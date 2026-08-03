@@ -1,0 +1,36 @@
+{
+  "category": "api_docs",
+  "count": 2,
+  "documents": [
+    {
+      "title": "OpenAI API docs",
+      "source_url": "https://developers.openai.com/api/docs",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "> Guides and conceptual documentation for building with the OpenAI API. Each entry has a Markdown twin at `/api/docs/<slug>.md`.",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Models",
+      "source_url": "https://developers.openai.com/api/docs/models",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "> Explore models available on the OpenAI API. If you're not sure where to start, use [GPT-5.6 Sol](/api/docs/models/gpt-5.6-sol), our flagship model for complex reasoning and coding. Choose [GPT-5.6 Terra](/api/docs/models/gpt-5.6-terra) to balance intelligence and cost, or [GPT-5.6 Luna](/api/docs/models/gpt-5.6-luna) for cost-sensitive, high-volume workloads. All latest OpenAI models support text and image input, text output, multilingual capabilities, and vision. Models are available via the [Responses API](/api/reference/resources/responses/methods/create) and our [Client SDKs](/api/docs/libraries).",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    }
+  ]
+}

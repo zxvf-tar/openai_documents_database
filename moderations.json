@@ -1,0 +1,60 @@
+{
+  "category": "moderations",
+  "count": 1,
+  "documents": [
+    {
+      "title": "Create moderation",
+      "source_url": "https://developers.openai.com/api/reference/resources/moderations/methods/create",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/moderations",
+        "request_type": "application/json"
+      },
+      "description": "Classifies if text and/or image inputs are potentially harmful. Learn more in the [moderation guide](/docs/guides/moderation).",
+      "parameters": {
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/moderations \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"input\": \"I want to kill them.\"\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"model\": \"model\",\n  \"results\": [\n    {\n      \"categories\": {\n        \"harassment\": true,\n        \"harassment/threatening\": true,\n        \"hate\": true,\n        \"hate/threatening\": true,\n        \"illicit\": true,\n        \"illicit/violent\": true,\n        \"self-harm\": true,\n        \"self-harm/instructions\": true,\n        \"self-harm/intent\": true,\n        \"sexual\": true,\n        \"sexual/minors\": true,\n        \"violence\": true,\n        \"violence/graphic\": true\n      },\n      \"category_applied_input_types\": {\n        \"harassment\": [\n          \"text\"\n        ],\n        \"harassment/threatening\": [\n          \"text\"\n        ],\n        \"hate\": [\n          \"text\"\n        ],\n        \"hate/threatening\": [\n          \"text\"\n        ],\n        \"illicit\": [\n          \"text\"\n        ],\n        \"illicit/violent\": [\n          \"text\"\n        ],\n        \"self-harm\": [\n          \"text\"\n        ],\n        \"self-harm/instructions\": [\n          \"text\"\n        ],\n        \"self-harm/intent\": [\n          \"text\"\n        ],\n        \"sexual\": [\n          \"text\"\n        ],\n        \"sexual/minors\": [\n          \"text\"\n        ],\n        \"violence\": [\n          \"text\"\n        ],\n        \"violence/graphic\": [\n          \"text\"\n        ]\n      },\n      \"category_scores\": {\n        \"harassment\": 0,\n        \"harassment/threatening\": 0,\n        \"hate\": 0,\n        \"hate/threatening\": 0,\n        \"illicit\": 0,\n        \"illicit/violent\": 0,\n        \"self-harm\": 0,\n        \"self-harm/instructions\": 0,\n        \"self-harm/intent\": 0,\n        \"sexual\": 0,\n        \"sexual/minors\": 0,\n        \"violence\": 0,\n        \"violence/graphic\": 0\n      },\n      \"flagged\": true\n    }\n  ]\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Image and text",
+          "code": "curl https://api.openai.com/v1/moderations \\\n  -X POST \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"model\": \"omni-moderation-latest\",\n    \"input\": [\n      { \"type\": \"text\", \"text\": \"...text to classify goes here...\" },\n      {\n        \"type\": \"image_url\",\n        \"image_url\": {\n          \"url\": \"https://example.com/image.png\"\n        }\n      }\n    ]\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"modr-0d9740456c391e43c445bf0f010940c7\",\n  \"model\": \"omni-moderation-latest\",\n  \"results\": [\n    {\n      \"flagged\": true,\n      \"categories\": {\n        \"harassment\": true,\n        \"harassment/threatening\": true,\n        \"sexual\": false,\n        \"hate\": false,\n        \"hate/threatening\": false,\n        \"illicit\": false,\n        \"illicit/violent\": false,\n        \"self-harm/intent\": false,\n        \"self-harm/instructions\": false,\n        \"self-harm\": false,\n        \"sexual/minors\": false,\n        \"violence\": true,\n        \"violence/graphic\": true\n      },\n      \"category_scores\": {\n        \"harassment\": 0.8189693396524255,\n        \"harassment/threatening\": 0.804985420696006,\n        \"sexual\": 1.573112165348997e-6,\n        \"hate\": 0.007562942636942845,\n        \"hate/threatening\": 0.004208854591835476,\n        \"illicit\": 0.030535955153511665,\n        \"illicit/violent\": 0.008925306722380033,\n        \"self-harm/intent\": 0.00023023930975076432,\n        \"self-harm/instructions\": 0.0002293869201073356,\n        \"self-harm\": 0.012598046106750154,\n        \"sexual/minors\": 2.212566909570261e-8,\n        \"violence\": 0.9999992735124786,\n        \"violence/graphic\": 0.843064871157054\n      },\n      \"category_applied_input_types\": {\n        \"harassment\": [\n          \"text\"\n        ],\n        \"harassment/threatening\": [\n          \"text\"\n        ],\n        \"sexual\": [\n          \"text\",\n          \"image\"\n        ],\n        \"hate\": [\n          \"text\"\n        ],\n        \"hate/threatening\": [\n          \"text\"\n        ],\n        \"illicit\": [\n          \"text\"\n        ],\n        \"illicit/violent\": [\n          \"text\"\n        ],\n        \"self-harm/intent\": [\n          \"text\",\n          \"image\"\n        ],\n        \"self-harm/instructions\": [\n          \"text\",\n          \"image\"\n        ],\n        \"self-harm\": [\n          \"text\",\n          \"image\"\n        ],\n        \"sexual/minors\": [\n          \"text\"\n        ],\n        \"violence\": [\n          \"text\",\n          \"image\"\n        ],\n        \"violence/graphic\": [\n          \"text\",\n          \"image\"\n        ]\n      }\n    }\n  ]\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Single string",
+          "code": "curl https://api.openai.com/v1/moderations \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"input\": \"I want to kill them.\"\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"modr-AB8CjOTu2jiq12hp1AQPfeqFWaORR\",\n  \"model\": \"text-moderation-007\",\n  \"results\": [\n    {\n      \"flagged\": true,\n      \"categories\": {\n        \"sexual\": false,\n        \"hate\": false,\n        \"harassment\": true,\n        \"self-harm\": false,\n        \"sexual/minors\": false,\n        \"hate/threatening\": false,\n        \"violence/graphic\": false,\n        \"self-harm/intent\": false,\n        \"self-harm/instructions\": false,\n        \"harassment/threatening\": true,\n        \"violence\": true\n      },\n      \"category_scores\": {\n        \"sexual\": 0.000011726012417057063,\n        \"hate\": 0.22706663608551025,\n        \"harassment\": 0.5215635299682617,\n        \"self-harm\": 2.227119921371923e-6,\n        \"sexual/minors\": 7.107352217872176e-8,\n        \"hate/threatening\": 0.023547329008579254,\n        \"violence/graphic\": 0.00003391829886822961,\n        \"self-harm/intent\": 1.646940972932498e-6,\n        \"self-harm/instructions\": 1.1198755256458526e-9,\n        \"harassment/threatening\": 0.5694745779037476,\n        \"violence\": 0.9971134662628174\n      }\n    }\n  ]\n}"
+        }
+      ],
+      "events_or_schemas": []
+    }
+  ]
+}

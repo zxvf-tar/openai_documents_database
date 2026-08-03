@@ -1,0 +1,60 @@
+{
+  "category": "completions",
+  "count": 1,
+  "documents": [
+    {
+      "title": "Create completion",
+      "source_url": "https://developers.openai.com/api/reference/resources/completions/methods/create",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/completions",
+        "request_type": "application/json"
+      },
+      "description": "Creates a completion for the provided prompt and parameters. Returns a completion object, or a sequence of completion objects if the request is streamed.",
+      "parameters": {
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/completions \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"model\": \"gpt-3.5-turbo-instruct\",\n          \"prompt\": \"This is a test.\",\n          \"max_tokens\": 16,\n          \"n\": 1,\n          \"suffix\": \"test.\",\n          \"temperature\": 1,\n          \"top_p\": 1,\n          \"user\": \"user-1234\"\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n      \"index\": 0,\n      \"logprobs\": {\n        \"text_offset\": [\n          0\n        ],\n        \"token_logprobs\": [\n          0\n        ],\n        \"tokens\": [\n          \"string\"\n        ],\n        \"top_logprobs\": [\n          {\n            \"foo\": 0\n          }\n        ]\n      },\n      \"text\": \"text\"\n    }\n  ],\n  \"created\": 0,\n  \"model\": \"model\",\n  \"object\": \"text_completion\",\n  \"system_fingerprint\": \"system_fingerprint\",\n  \"usage\": {\n    \"completion_tokens\": 0,\n    \"prompt_tokens\": 0,\n    \"total_tokens\": 0,\n    \"completion_tokens_details\": {\n      \"accepted_prediction_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"reasoning_tokens\": 0,\n      \"rejected_prediction_tokens\": 0\n    },\n    \"prompt_tokens_details\": {\n      \"audio_tokens\": 0,\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    }\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "No streaming",
+          "code": "curl https://api.openai.com/v1/completions \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"model\": \"VAR_completion_model_id\",\n    \"prompt\": \"Say this is a test\",\n    \"max_tokens\": 7,\n    \"temperature\": 0\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"cmpl-uqkvlQyYK7bGYrRHQ0eXlWi7\",\n  \"object\": \"text_completion\",\n  \"created\": 1589478378,\n  \"model\": \"VAR_completion_model_id\",\n  \"system_fingerprint\": \"fp_44709d6fcb\",\n  \"choices\": [\n    {\n      \"text\": \"\\n\\nThis is indeed a test\",\n      \"index\": 0,\n      \"logprobs\": null,\n      \"finish_reason\": \"length\"\n    }\n  ],\n  \"usage\": {\n    \"prompt_tokens\": 5,\n    \"completion_tokens\": 7,\n    \"total_tokens\": 12\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Streaming",
+          "code": "curl https://api.openai.com/v1/completions \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"model\": \"VAR_completion_model_id\",\n    \"prompt\": \"Say this is a test\",\n    \"max_tokens\": 7,\n    \"temperature\": 0,\n    \"stream\": true\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"cmpl-7iA7iJjj8V2zOkCGvWF2hAkDWBQZe\",\n  \"object\": \"text_completion\",\n  \"created\": 1690759702,\n  \"choices\": [\n    {\n      \"text\": \"This\",\n      \"index\": 0,\n      \"logprobs\": null,\n      \"finish_reason\": null\n    }\n  ],\n  \"model\": \"gpt-3.5-turbo-instruct\"\n  \"system_fingerprint\": \"fp_44709d6fcb\",\n}"
+        }
+      ],
+      "events_or_schemas": []
+    }
+  ]
+}

@@ -1,0 +1,329 @@
+{
+  "category": "files",
+  "count": 6,
+  "documents": [
+    {
+      "title": "Files",
+      "source_url": "https://developers.openai.com/api/reference/resources/files",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/files/{file_id}/content",
+        "request_type": "application/json"
+      },
+      "description": "Returns the contents of the specified file.",
+      "parameters": {
+        "path": [],
+        "query": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files/$FILE_ID/content \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files/file-abc123/content \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" > file.jsonl"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files \\\n    -H 'Content-Type: multipart/form-data' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -F 'file=@/path/to/file' \\\n    -F purpose=assistants"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"bytes\": 0,\n  \"created_at\": 0,\n  \"filename\": \"filename\",\n  \"object\": \"file\",\n  \"purpose\": \"assistants\",\n  \"status\": \"uploaded\",\n  \"expires_at\": 0,\n  \"status_details\": \"status_details\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -F purpose=\"fine-tune\" \\\n  -F file=\"@mydata.jsonl\"\n  -F expires_after[anchor]=\"created_at\"\n  -F expires_after[seconds]=2592000"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"file-abc123\",\n  \"object\": \"file\",\n  \"bytes\": 120000,\n  \"created_at\": 1677610602,\n  \"expires_at\": 1677614202,\n  \"filename\": \"mydata.jsonl\",\n  \"purpose\": \"fine-tune\",\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files/$FILE_ID \\\n    -X DELETE \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"deleted\": true,\n  \"object\": \"file\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files/file-abc123 \\\n  -X DELETE \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"file-abc123\",\n  \"object\": \"file\",\n  \"deleted\": true\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"data\": [\n    {\n      \"id\": \"id\",\n      \"bytes\": 0,\n      \"created_at\": 0,\n      \"filename\": \"filename\",\n      \"object\": \"file\",\n      \"purpose\": \"assistants\",\n      \"status\": \"uploaded\",\n      \"expires_at\": 0,\n      \"status_details\": \"status_details\"\n    }\n  ],\n  \"first_id\": \"file-abc123\",\n  \"has_more\": false,\n  \"last_id\": \"file-abc456\",\n  \"object\": \"list\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"file-abc123\",\n      \"object\": \"file\",\n      \"bytes\": 175,\n      \"created_at\": 1613677385,\n      \"expires_at\": 1677614202,\n      \"filename\": \"salesOverview.pdf\",\n      \"purpose\": \"assistants\",\n    },\n    {\n      \"id\": \"file-abc456\",\n      \"object\": \"file\",\n      \"bytes\": 140,\n      \"created_at\": 1613779121,\n      \"expires_at\": 1677614202,\n      \"filename\": \"puppy.jsonl\",\n      \"purpose\": \"fine-tune\",\n    }\n  ],\n  \"first_id\": \"file-abc123\",\n  \"last_id\": \"file-abc456\",\n  \"has_more\": false\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files/$FILE_ID \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"bytes\": 0,\n  \"created_at\": 0,\n  \"filename\": \"filename\",\n  \"object\": \"file\",\n  \"purpose\": \"assistants\",\n  \"status\": \"uploaded\",\n  \"expires_at\": 0,\n  \"status_details\": \"status_details\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files/file-abc123 \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"file-abc123\",\n  \"object\": \"file\",\n  \"bytes\": 120000,\n  \"created_at\": 1677610602,\n  \"expires_at\": 1677614202,\n  \"filename\": \"mydata.jsonl\",\n  \"purpose\": \"fine-tune\",\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Retrieve file content",
+      "source_url": "https://developers.openai.com/api/reference/resources/files/methods/content",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/files/{file_id}/content",
+        "request_type": "application/json"
+      },
+      "description": "Returns the contents of the specified file.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files/$FILE_ID/content \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files/file-abc123/content \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" > file.jsonl"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Upload file",
+      "source_url": "https://developers.openai.com/api/reference/resources/files/methods/create",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/files",
+        "request_type": "multipart/form-data"
+      },
+      "description": "Upload a file that can be used across various endpoints. Individual files can be up to 512 MB, and each project can store up to 2.5 TB of files in total. There is no organization-wide storage limit. Uploads to this endpoint are rate-limited to 1,000 requests per minute per authenticated user. file types. See the [Assistants Tools guide](/docs/assistants/tools) for details. certain required formats for fine-tuning [chat](/docs/api-reference/fine-tuning/chat-input) or [completions](/docs/api-reference/fine-tuning/completions-input) models. also has a specific required [format](/docs/api-reference/batch/request-input). you need to attach multiple uploaded files to the same vector store, use [`/vector_stores/{vector_store_id}/file_batches`](/docs/api-reference/vector-stores-file-batches/createBatch) instead of attaching them one by one. Vector store attachment has separate limits from file upload, including 2,000 attached files per minute per organization. Please [contact us](https://help.openai.com/) if you need to increase these storage limits.",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files \\\n    -H 'Content-Type: multipart/form-data' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -F 'file=@/path/to/file' \\\n    -F purpose=assistants"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"bytes\": 0,\n  \"created_at\": 0,\n  \"filename\": \"filename\",\n  \"object\": \"file\",\n  \"purpose\": \"assistants\",\n  \"status\": \"uploaded\",\n  \"expires_at\": 0,\n  \"status_details\": \"status_details\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -F purpose=\"fine-tune\" \\\n  -F file=\"@mydata.jsonl\"\n  -F expires_after[anchor]=\"created_at\"\n  -F expires_after[seconds]=2592000"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"file-abc123\",\n  \"object\": \"file\",\n  \"bytes\": 120000,\n  \"created_at\": 1677610602,\n  \"expires_at\": 1677614202,\n  \"filename\": \"mydata.jsonl\",\n  \"purpose\": \"fine-tune\",\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Delete file",
+      "source_url": "https://developers.openai.com/api/reference/resources/files/methods/delete",
+      "endpoint": {
+        "method": "DELETE",
+        "uri": "/files/{file_id}",
+        "request_type": "application/json"
+      },
+      "description": "Delete a file and remove it from all vector stores.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files/$FILE_ID \\\n    -X DELETE \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"deleted\": true,\n  \"object\": \"file\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files/file-abc123 \\\n  -X DELETE \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"file-abc123\",\n  \"object\": \"file\",\n  \"deleted\": true\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "List files",
+      "source_url": "https://developers.openai.com/api/reference/resources/files/methods/list",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/files",
+        "request_type": "application/json"
+      },
+      "description": "Returns a list of files.",
+      "parameters": {
+        "query": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"data\": [\n    {\n      \"id\": \"id\",\n      \"bytes\": 0,\n      \"created_at\": 0,\n      \"filename\": \"filename\",\n      \"object\": \"file\",\n      \"purpose\": \"assistants\",\n      \"status\": \"uploaded\",\n      \"expires_at\": 0,\n      \"status_details\": \"status_details\"\n    }\n  ],\n  \"first_id\": \"file-abc123\",\n  \"has_more\": false,\n  \"last_id\": \"file-abc456\",\n  \"object\": \"list\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"file-abc123\",\n      \"object\": \"file\",\n      \"bytes\": 175,\n      \"created_at\": 1613677385,\n      \"expires_at\": 1677614202,\n      \"filename\": \"salesOverview.pdf\",\n      \"purpose\": \"assistants\",\n    },\n    {\n      \"id\": \"file-abc456\",\n      \"object\": \"file\",\n      \"bytes\": 140,\n      \"created_at\": 1613779121,\n      \"expires_at\": 1677614202,\n      \"filename\": \"puppy.jsonl\",\n      \"purpose\": \"fine-tune\",\n    }\n  ],\n  \"first_id\": \"file-abc123\",\n  \"last_id\": \"file-abc456\",\n  \"has_more\": false\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Retrieve file",
+      "source_url": "https://developers.openai.com/api/reference/resources/files/methods/retrieve",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/files/{file_id}",
+        "request_type": "application/json"
+      },
+      "description": "Returns information about a specific file.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files/$FILE_ID \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"bytes\": 0,\n  \"created_at\": 0,\n  \"filename\": \"filename\",\n  \"object\": \"file\",\n  \"purpose\": \"assistants\",\n  \"status\": \"uploaded\",\n  \"expires_at\": 0,\n  \"status_details\": \"status_details\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/files/file-abc123 \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"file-abc123\",\n  \"object\": \"file\",\n  \"bytes\": 120000,\n  \"created_at\": 1677610602,\n  \"expires_at\": 1677614202,\n  \"filename\": \"mydata.jsonl\",\n  \"purpose\": \"fine-tune\",\n}"
+        }
+      ],
+      "events_or_schemas": []
+    }
+  ]
+}

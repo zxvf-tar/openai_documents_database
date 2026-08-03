@@ -1,0 +1,349 @@
+{
+  "category": "skills",
+  "count": 11,
+  "documents": [
+    {
+      "title": "Create a new skill.",
+      "source_url": "https://developers.openai.com/api/reference/resources/skills/methods/create",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/skills",
+        "request_type": "application/json"
+      },
+      "description": "Create a new skill.",
+      "parameters": {
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/skills \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"files\": [\n            \"string\"\n          ]\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"default_version\": \"default_version\",\n  \"description\": \"description\",\n  \"latest_version\": \"latest_version\",\n  \"name\": \"name\",\n  \"object\": \"skill\"\n}"
+        }
+      ],
+      "events_or_schemas": [
+        "Create a new skill."
+      ]
+    },
+    {
+      "title": "Delete a skill by its ID.",
+      "source_url": "https://developers.openai.com/api/reference/resources/skills/methods/delete",
+      "endpoint": {
+        "method": "DELETE",
+        "uri": "/skills/{skill_id}",
+        "request_type": "application/json"
+      },
+      "description": "Delete a skill by its ID.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/skills/$SKILL_ID \\\n    -X DELETE \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"deleted\": true,\n  \"object\": \"skill.deleted\"\n}"
+        }
+      ],
+      "events_or_schemas": [
+        "Delete a skill by its ID."
+      ]
+    },
+    {
+      "title": "List all skills for the current project.",
+      "source_url": "https://developers.openai.com/api/reference/resources/skills/methods/list",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/skills",
+        "request_type": "application/json"
+      },
+      "description": "List all skills for the current project.",
+      "parameters": {
+        "query": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/skills \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"data\": [\n    {\n      \"id\": \"id\",\n      \"created_at\": 0,\n      \"default_version\": \"default_version\",\n      \"description\": \"description\",\n      \"latest_version\": \"latest_version\",\n      \"name\": \"name\",\n      \"object\": \"skill\"\n    }\n  ],\n  \"first_id\": \"first_id\",\n  \"has_more\": true,\n  \"last_id\": \"last_id\",\n  \"object\": \"list\"\n}"
+        }
+      ],
+      "events_or_schemas": [
+        "List all skills for the current project."
+      ]
+    },
+    {
+      "title": "Get a skill by its ID.",
+      "source_url": "https://developers.openai.com/api/reference/resources/skills/methods/retrieve",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/skills/{skill_id}",
+        "request_type": "application/json"
+      },
+      "description": "Get a skill by its ID.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/skills/$SKILL_ID \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"default_version\": \"default_version\",\n  \"description\": \"description\",\n  \"latest_version\": \"latest_version\",\n  \"name\": \"name\",\n  \"object\": \"skill\"\n}"
+        }
+      ],
+      "events_or_schemas": [
+        "Get a skill by its ID."
+      ]
+    },
+    {
+      "title": "Update the default version pointer for a skill.",
+      "source_url": "https://developers.openai.com/api/reference/resources/skills/methods/update",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/skills/{skill_id}",
+        "request_type": "application/json"
+      },
+      "description": "Update the default version pointer for a skill.",
+      "parameters": {
+        "path": [],
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/skills/$SKILL_ID \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"default_version\": \"default_version\"\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"default_version\": \"default_version\",\n  \"description\": \"description\",\n  \"latest_version\": \"latest_version\",\n  \"name\": \"name\",\n  \"object\": \"skill\"\n}"
+        }
+      ],
+      "events_or_schemas": [
+        "Update the default version pointer for a skill."
+      ]
+    },
+    {
+      "title": "Download a skill zip bundle by its ID.",
+      "source_url": "https://developers.openai.com/api/reference/resources/skills/subresources/content/methods/retrieve",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/skills/{skill_id}/content",
+        "request_type": "application/json"
+      },
+      "description": "Download a skill zip bundle by its ID.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/skills/$SKILL_ID/content \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        }
+      ],
+      "events_or_schemas": [
+        "Download a skill zip bundle by its ID."
+      ]
+    },
+    {
+      "title": "Create a new immutable skill version.",
+      "source_url": "https://developers.openai.com/api/reference/resources/skills/subresources/versions/methods/create",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/skills/{skill_id}/versions",
+        "request_type": "application/json"
+      },
+      "description": "Create a new immutable skill version.",
+      "parameters": {
+        "path": [],
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/skills/$SKILL_ID/versions \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"files\": [\n            \"string\"\n          ]\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"description\": \"description\",\n  \"name\": \"name\",\n  \"object\": \"skill.version\",\n  \"skill_id\": \"skill_id\",\n  \"version\": \"version\"\n}"
+        }
+      ],
+      "events_or_schemas": [
+        "Create a new immutable skill version."
+      ]
+    },
+    {
+      "title": "Delete a skill version.",
+      "source_url": "https://developers.openai.com/api/reference/resources/skills/subresources/versions/methods/delete",
+      "endpoint": {
+        "method": "DELETE",
+        "uri": "/skills/{skill_id}/versions/{version}",
+        "request_type": "application/json"
+      },
+      "description": "Delete a skill version.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/skills/$SKILL_ID/versions/$VERSION \\\n    -X DELETE \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"deleted\": true,\n  \"object\": \"skill.version.deleted\",\n  \"version\": \"version\"\n}"
+        }
+      ],
+      "events_or_schemas": [
+        "Delete a skill version."
+      ]
+    },
+    {
+      "title": "List skill versions for a skill.",
+      "source_url": "https://developers.openai.com/api/reference/resources/skills/subresources/versions/methods/list",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/skills/{skill_id}/versions",
+        "request_type": "application/json"
+      },
+      "description": "List skill versions for a skill.",
+      "parameters": {
+        "path": [],
+        "query": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/skills/$SKILL_ID/versions \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"data\": [\n    {\n      \"id\": \"id\",\n      \"created_at\": 0,\n      \"description\": \"description\",\n      \"name\": \"name\",\n      \"object\": \"skill.version\",\n      \"skill_id\": \"skill_id\",\n      \"version\": \"version\"\n    }\n  ],\n  \"first_id\": \"first_id\",\n  \"has_more\": true,\n  \"last_id\": \"last_id\",\n  \"object\": \"list\"\n}"
+        }
+      ],
+      "events_or_schemas": [
+        "List skill versions for a skill."
+      ]
+    },
+    {
+      "title": "Get a specific skill version.",
+      "source_url": "https://developers.openai.com/api/reference/resources/skills/subresources/versions/methods/retrieve",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/skills/{skill_id}/versions/{version}",
+        "request_type": "application/json"
+      },
+      "description": "Get a specific skill version.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/skills/$SKILL_ID/versions/$VERSION \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"description\": \"description\",\n  \"name\": \"name\",\n  \"object\": \"skill.version\",\n  \"skill_id\": \"skill_id\",\n  \"version\": \"version\"\n}"
+        }
+      ],
+      "events_or_schemas": [
+        "Get a specific skill version."
+      ]
+    },
+    {
+      "title": "Download a skill version zip bundle.",
+      "source_url": "https://developers.openai.com/api/reference/resources/skills/subresources/versions/subresources/content/methods/retrieve",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/skills/{skill_id}/versions/{version}/content",
+        "request_type": "application/json"
+      },
+      "description": "Download a skill version zip bundle.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/skills/$SKILL_ID/versions/$VERSION/content \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        }
+      ],
+      "events_or_schemas": [
+        "Download a skill version zip bundle."
+      ]
+    }
+  ]
+}

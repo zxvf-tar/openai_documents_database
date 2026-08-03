@@ -1,0 +1,290 @@
+{
+  "category": "uploads",
+  "count": 5,
+  "documents": [
+    {
+      "title": "Uploads",
+      "source_url": "https://developers.openai.com/api/reference/resources/uploads",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/uploads/{upload_id}/cancel",
+        "request_type": "application/json"
+      },
+      "description": "Cancels the Upload. No Parts may be added after an Upload is cancelled. Returns the Upload object with status `cancelled`.",
+      "parameters": {
+        "path": [],
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads/$UPLOAD_ID/cancel \\\n    -X POST \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"bytes\": 0,\n  \"created_at\": 0,\n  \"expires_at\": 0,\n  \"filename\": \"filename\",\n  \"purpose\": \"purpose\",\n  \"status\": \"pending\",\n  \"file\": {\n    \"id\": \"id\",\n    \"bytes\": 0,\n    \"created_at\": 0,\n    \"filename\": \"filename\",\n    \"object\": \"file\",\n    \"purpose\": \"assistants\",\n    \"status\": \"uploaded\",\n    \"expires_at\": 0,\n    \"status_details\": \"status_details\"\n  },\n  \"object\": \"upload\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads/upload_abc123/cancel"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"upload_abc123\",\n  \"object\": \"upload\",\n  \"bytes\": 2147483648,\n  \"created_at\": 1719184911,\n  \"filename\": \"training_examples.jsonl\",\n  \"purpose\": \"fine-tune\",\n  \"status\": \"cancelled\",\n  \"expires_at\": 1719127296\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads/$UPLOAD_ID/complete \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"part_ids\": [\n            \"string\"\n          ]\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"bytes\": 0,\n  \"created_at\": 0,\n  \"expires_at\": 0,\n  \"filename\": \"filename\",\n  \"purpose\": \"purpose\",\n  \"status\": \"pending\",\n  \"file\": {\n    \"id\": \"id\",\n    \"bytes\": 0,\n    \"created_at\": 0,\n    \"filename\": \"filename\",\n    \"object\": \"file\",\n    \"purpose\": \"assistants\",\n    \"status\": \"uploaded\",\n    \"expires_at\": 0,\n    \"status_details\": \"status_details\"\n  },\n  \"object\": \"upload\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads/upload_abc123/complete\n  -d '{\n    \"part_ids\": [\"part_def456\", \"part_ghi789\"]\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"upload_abc123\",\n  \"object\": \"upload\",\n  \"bytes\": 2147483648,\n  \"created_at\": 1719184911,\n  \"filename\": \"training_examples.jsonl\",\n  \"purpose\": \"fine-tune\",\n  \"status\": \"completed\",\n  \"expires_at\": 1719127296,\n  \"file\": {\n    \"id\": \"file-xyz321\",\n    \"object\": \"file\",\n    \"bytes\": 2147483648,\n    \"created_at\": 1719186911,\n    \"expires_at\": 1719127296,\n    \"filename\": \"training_examples.jsonl\",\n    \"purpose\": \"fine-tune\",\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"bytes\": 0,\n          \"filename\": \"filename\",\n          \"mime_type\": \"mime_type\",\n          \"purpose\": \"assistants\"\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"bytes\": 0,\n  \"created_at\": 0,\n  \"expires_at\": 0,\n  \"filename\": \"filename\",\n  \"purpose\": \"purpose\",\n  \"status\": \"pending\",\n  \"file\": {\n    \"id\": \"id\",\n    \"bytes\": 0,\n    \"created_at\": 0,\n    \"filename\": \"filename\",\n    \"object\": \"file\",\n    \"purpose\": \"assistants\",\n    \"status\": \"uploaded\",\n    \"expires_at\": 0,\n    \"status_details\": \"status_details\"\n  },\n  \"object\": \"upload\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"purpose\": \"fine-tune\",\n    \"filename\": \"training_examples.jsonl\",\n    \"bytes\": 2147483648,\n    \"mime_type\": \"text/jsonl\",\n    \"expires_after\": {\n      \"anchor\": \"created_at\",\n      \"seconds\": 3600\n    }\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"upload_abc123\",\n  \"object\": \"upload\",\n  \"bytes\": 2147483648,\n  \"created_at\": 1719184911,\n  \"filename\": \"training_examples.jsonl\",\n  \"purpose\": \"fine-tune\",\n  \"status\": \"pending\",\n  \"expires_at\": 1719127296\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads/$UPLOAD_ID/parts \\\n    -H 'Content-Type: multipart/form-data' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -F 'data=@/path/to/data'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"object\": \"upload.part\",\n  \"upload_id\": \"upload_id\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads/upload_abc123/parts\n  -F data=\"aHR0cHM6Ly9hcGkub3BlbmFpLmNvbS92MS91cGxvYWRz...\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"part_def456\",\n  \"object\": \"upload.part\",\n  \"created_at\": 1719185911,\n  \"upload_id\": \"upload_abc123\"\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Cancel upload",
+      "source_url": "https://developers.openai.com/api/reference/resources/uploads/methods/cancel",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/uploads/{upload_id}/cancel",
+        "request_type": "application/json"
+      },
+      "description": "Cancels the Upload. No Parts may be added after an Upload is cancelled. Returns the Upload object with status `cancelled`.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads/$UPLOAD_ID/cancel \\\n    -X POST \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"bytes\": 0,\n  \"created_at\": 0,\n  \"expires_at\": 0,\n  \"filename\": \"filename\",\n  \"purpose\": \"purpose\",\n  \"status\": \"pending\",\n  \"file\": {\n    \"id\": \"id\",\n    \"bytes\": 0,\n    \"created_at\": 0,\n    \"filename\": \"filename\",\n    \"object\": \"file\",\n    \"purpose\": \"assistants\",\n    \"status\": \"uploaded\",\n    \"expires_at\": 0,\n    \"status_details\": \"status_details\"\n  },\n  \"object\": \"upload\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads/upload_abc123/cancel"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"upload_abc123\",\n  \"object\": \"upload\",\n  \"bytes\": 2147483648,\n  \"created_at\": 1719184911,\n  \"filename\": \"training_examples.jsonl\",\n  \"purpose\": \"fine-tune\",\n  \"status\": \"cancelled\",\n  \"expires_at\": 1719127296\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Complete upload",
+      "source_url": "https://developers.openai.com/api/reference/resources/uploads/methods/complete",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/uploads/{upload_id}/complete",
+        "request_type": "application/json"
+      },
+      "description": "Completes the [Upload](/docs/api-reference/uploads/object). Within the returned Upload object, there is a nested [File](/docs/api-reference/files/object) object that is ready to use in the rest of the platform. You can specify the order of the Parts by passing in an ordered list of the Part IDs. The number of bytes uploaded upon completion must match the number of bytes initially specified when creating the Upload object. No Parts may be added after an Upload is completed. Returns the Upload object with status `completed`, including an additional `file` property containing the created usable File object.",
+      "parameters": {
+        "path": [],
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads/$UPLOAD_ID/complete \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"part_ids\": [\n            \"string\"\n          ]\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"bytes\": 0,\n  \"created_at\": 0,\n  \"expires_at\": 0,\n  \"filename\": \"filename\",\n  \"purpose\": \"purpose\",\n  \"status\": \"pending\",\n  \"file\": {\n    \"id\": \"id\",\n    \"bytes\": 0,\n    \"created_at\": 0,\n    \"filename\": \"filename\",\n    \"object\": \"file\",\n    \"purpose\": \"assistants\",\n    \"status\": \"uploaded\",\n    \"expires_at\": 0,\n    \"status_details\": \"status_details\"\n  },\n  \"object\": \"upload\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads/upload_abc123/complete\n  -d '{\n    \"part_ids\": [\"part_def456\", \"part_ghi789\"]\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"upload_abc123\",\n  \"object\": \"upload\",\n  \"bytes\": 2147483648,\n  \"created_at\": 1719184911,\n  \"filename\": \"training_examples.jsonl\",\n  \"purpose\": \"fine-tune\",\n  \"status\": \"completed\",\n  \"expires_at\": 1719127296,\n  \"file\": {\n    \"id\": \"file-xyz321\",\n    \"object\": \"file\",\n    \"bytes\": 2147483648,\n    \"created_at\": 1719186911,\n    \"expires_at\": 1719127296,\n    \"filename\": \"training_examples.jsonl\",\n    \"purpose\": \"fine-tune\",\n  }\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Create upload",
+      "source_url": "https://developers.openai.com/api/reference/resources/uploads/methods/create",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/uploads",
+        "request_type": "application/json"
+      },
+      "description": "Creates an intermediate [Upload](/docs/api-reference/uploads/object) object that you can add [Parts](/docs/api-reference/uploads/part-object) to. Currently, an Upload can accept at most 8 GB in total and expires after an hour after you create it. Once you complete the Upload, we will create a [File](/docs/api-reference/files/object) object that contains all the parts you uploaded. This File is usable in the rest of our platform as a regular File object. For certain `purpose` values, the correct `mime_type` must be specified. Please refer to documentation for the [supported MIME types for your use case](/docs/assistants/tools/file-search#supported-files). For guidance on the proper filename extensions for each purpose, please follow the documentation on [creating a File](/docs/api-reference/files/create). Returns the Upload object with status `pending`.",
+      "parameters": {
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"bytes\": 0,\n          \"filename\": \"filename\",\n          \"mime_type\": \"mime_type\",\n          \"purpose\": \"assistants\"\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"bytes\": 0,\n  \"created_at\": 0,\n  \"expires_at\": 0,\n  \"filename\": \"filename\",\n  \"purpose\": \"purpose\",\n  \"status\": \"pending\",\n  \"file\": {\n    \"id\": \"id\",\n    \"bytes\": 0,\n    \"created_at\": 0,\n    \"filename\": \"filename\",\n    \"object\": \"file\",\n    \"purpose\": \"assistants\",\n    \"status\": \"uploaded\",\n    \"expires_at\": 0,\n    \"status_details\": \"status_details\"\n  },\n  \"object\": \"upload\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"purpose\": \"fine-tune\",\n    \"filename\": \"training_examples.jsonl\",\n    \"bytes\": 2147483648,\n    \"mime_type\": \"text/jsonl\",\n    \"expires_after\": {\n      \"anchor\": \"created_at\",\n      \"seconds\": 3600\n    }\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"upload_abc123\",\n  \"object\": \"upload\",\n  \"bytes\": 2147483648,\n  \"created_at\": 1719184911,\n  \"filename\": \"training_examples.jsonl\",\n  \"purpose\": \"fine-tune\",\n  \"status\": \"pending\",\n  \"expires_at\": 1719127296\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Add upload part",
+      "source_url": "https://developers.openai.com/api/reference/resources/uploads/subresources/parts/methods/create",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/uploads/{upload_id}/parts",
+        "request_type": "application/json"
+      },
+      "description": "Adds a [Part](/docs/api-reference/uploads/part-object) to an [Upload](/docs/api-reference/uploads/object) object. A Part represents a chunk of bytes from the file you are trying to upload. Each Part can be at most 64 MB, and you can add Parts until you hit the Upload maximum of 8 GB. It is possible to add multiple Parts in parallel. You can decide the intended order of the Parts when you [complete the Upload](/docs/api-reference/uploads/complete).",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads/$UPLOAD_ID/parts \\\n    -H 'Content-Type: multipart/form-data' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -F 'data=@/path/to/data'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"object\": \"upload.part\",\n  \"upload_id\": \"upload_id\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/uploads/upload_abc123/parts\n  -F data=\"aHR0cHM6Ly9hcGkub3BlbmFpLmNvbS92MS91cGxvYWRz...\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"part_def456\",\n  \"object\": \"upload.part\",\n  \"created_at\": 1719185911,\n  \"upload_id\": \"upload_abc123\"\n}"
+        }
+      ],
+      "events_or_schemas": []
+    }
+  ]
+}

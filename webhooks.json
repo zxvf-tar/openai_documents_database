@@ -1,0 +1,39 @@
+{
+  "category": "webhooks",
+  "count": 1,
+  "documents": [
+    {
+      "title": "Webhooks",
+      "source_url": "https://developers.openai.com/api/reference/resources/webhooks",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "Validates that the given payload was sent by OpenAI and parses the payload.",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": [
+        "Batch Cancelled Webhook Event",
+        "Batch Completed Webhook Event",
+        "Batch Expired Webhook Event",
+        "Batch Failed Webhook Event",
+        "Eval Run Canceled Webhook Event",
+        "Eval Run Failed Webhook Event",
+        "Eval Run Succeeded Webhook Event",
+        "Fine Tuning Job Cancelled Webhook Event",
+        "Fine Tuning Job Failed Webhook Event",
+        "Fine Tuning Job Succeeded Webhook Event",
+        "Live Call Incoming Webhook Event",
+        "Realtime Call Incoming Webhook Event",
+        "Response Cancelled Webhook Event",
+        "Response Completed Webhook Event",
+        "Response Failed Webhook Event",
+        "Response Incomplete Webhook Event",
+        "Unwrap Webhook Event"
+      ]
+    }
+  ]
+}

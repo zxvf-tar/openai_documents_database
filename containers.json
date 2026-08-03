@@ -1,0 +1,368 @@
+{
+  "category": "containers",
+  "count": 9,
+  "documents": [
+    {
+      "title": "Create container",
+      "source_url": "https://developers.openai.com/api/reference/resources/containers/methods/create",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/containers",
+        "request_type": "application/json"
+      },
+      "description": "Create Container",
+      "parameters": {
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"name\": \"name\"\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"name\": \"name\",\n  \"object\": \"object\",\n  \"status\": \"status\",\n  \"expires_after\": {\n    \"anchor\": \"last_active_at\",\n    \"minutes\": 0\n  },\n  \"last_active_at\": 0,\n  \"memory_limit\": \"1g\",\n  \"network_policy\": {\n    \"type\": \"allowlist\",\n    \"allowed_domains\": [\n      \"string\"\n    ]\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n        \"name\": \"My Container\",\n        \"memory_limit\": \"4g\",\n        \"skills\": [\n          {\n            \"type\": \"skill_reference\",\n            \"skill_id\": \"skill_4db6f1a2c9e73508b41f9da06e2c7b5f\"\n          },\n          {\n            \"type\": \"skill_reference\",\n            \"skill_id\": \"openai-spreadsheets\",\n            \"version\": \"latest\"\n          }\n        ],\n        \"network_policy\": {\n          \"type\": \"allowlist\",\n          \"allowed_domains\": [\"api.buildkite.com\"]\n        }\n      }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n    \"id\": \"cntr_682e30645a488191b6363a0cbefc0f0a025ec61b66250591\",\n    \"object\": \"container\",\n    \"created_at\": 1747857508,\n    \"status\": \"running\",\n    \"expires_after\": {\n        \"anchor\": \"last_active_at\",\n        \"minutes\": 20\n    },\n    \"last_active_at\": 1747857508,\n    \"network_policy\": {\n        \"type\": \"allowlist\",\n        \"allowed_domains\": [\"api.buildkite.com\"]\n    },\n    \"memory_limit\": \"4g\",\n    \"name\": \"My Container\"\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Delete a container",
+      "source_url": "https://developers.openai.com/api/reference/resources/containers/methods/delete",
+      "endpoint": {
+        "method": "DELETE",
+        "uri": "/containers/{container_id}",
+        "request_type": "application/json"
+      },
+      "description": "Delete Container",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers/$CONTAINER_ID \\\n    -X DELETE \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl -X DELETE https://api.openai.com/v1/containers/cntr_682dfebaacac8198bbfe9c2474fb6f4a085685cbe3cb5863 \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n    \"id\": \"cntr_682dfebaacac8198bbfe9c2474fb6f4a085685cbe3cb5863\",\n    \"object\": \"container.deleted\",\n    \"deleted\": true\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "List containers",
+      "source_url": "https://developers.openai.com/api/reference/resources/containers/methods/list",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/containers",
+        "request_type": "application/json"
+      },
+      "description": "List Containers",
+      "parameters": {
+        "query": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"data\": [\n    {\n      \"id\": \"id\",\n      \"created_at\": 0,\n      \"name\": \"name\",\n      \"object\": \"object\",\n      \"status\": \"status\",\n      \"expires_after\": {\n        \"anchor\": \"last_active_at\",\n        \"minutes\": 0\n      },\n      \"last_active_at\": 0,\n      \"memory_limit\": \"1g\",\n      \"network_policy\": {\n        \"type\": \"allowlist\",\n        \"allowed_domains\": [\n          \"string\"\n        ]\n      }\n    }\n  ],\n  \"first_id\": \"first_id\",\n  \"has_more\": true,\n  \"last_id\": \"last_id\",\n  \"object\": \"list\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n        \"id\": \"cntr_682dfebaacac8198bbfe9c2474fb6f4a085685cbe3cb5863\",\n        \"object\": \"container\",\n        \"created_at\": 1747844794,\n        \"status\": \"running\",\n        \"expires_after\": {\n            \"anchor\": \"last_active_at\",\n            \"minutes\": 20\n        },\n        \"last_active_at\": 1747844794,\n        \"memory_limit\": \"4g\",\n        \"name\": \"My Container\"\n    }\n  ],\n  \"first_id\": \"container_123\",\n  \"last_id\": \"container_123\",\n  \"has_more\": false\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Retrieve container",
+      "source_url": "https://developers.openai.com/api/reference/resources/containers/methods/retrieve",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/containers/{container_id}",
+        "request_type": "application/json"
+      },
+      "description": "Retrieve Container",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers/$CONTAINER_ID \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"name\": \"name\",\n  \"object\": \"object\",\n  \"status\": \"status\",\n  \"expires_after\": {\n    \"anchor\": \"last_active_at\",\n    \"minutes\": 0\n  },\n  \"last_active_at\": 0,\n  \"memory_limit\": \"1g\",\n  \"network_policy\": {\n    \"type\": \"allowlist\",\n    \"allowed_domains\": [\n      \"string\"\n    ]\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers/cntr_682dfebaacac8198bbfe9c2474fb6f4a085685cbe3cb5863 \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n    \"id\": \"cntr_682dfebaacac8198bbfe9c2474fb6f4a085685cbe3cb5863\",\n    \"object\": \"container\",\n    \"created_at\": 1747844794,\n    \"status\": \"running\",\n    \"expires_after\": {\n        \"anchor\": \"last_active_at\",\n        \"minutes\": 20\n    },\n    \"last_active_at\": 1747844794,\n    \"memory_limit\": \"4g\",\n    \"name\": \"My Container\"\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Create container file",
+      "source_url": "https://developers.openai.com/api/reference/resources/containers/subresources/files/methods/create",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/containers/{container_id}/files",
+        "request_type": "multipart/form-data"
+      },
+      "description": "Create a Container File You can send either a multipart/form-data request with the raw file content, or a JSON request with a file ID.",
+      "parameters": {
+        "path": [],
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers/$CONTAINER_ID/files \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{}'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"bytes\": 0,\n  \"container_id\": \"container_id\",\n  \"created_at\": 0,\n  \"object\": \"object\",\n  \"path\": \"path\",\n  \"source\": \"source\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers/cntr_682e0e7318108198aa783fd921ff305e08e78805b9fdbb04/files \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -F file=\"@example.txt\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"cfile_682e0e8a43c88191a7978f477a09bdf5\",\n  \"object\": \"container.file\",\n  \"created_at\": 1747848842,\n  \"bytes\": 880,\n  \"container_id\": \"cntr_682e0e7318108198aa783fd921ff305e08e78805b9fdbb04\",\n  \"path\": \"/mnt/data/88e12fa445d32636f190a0b33daed6cb-tsconfig.json\",\n  \"source\": \"user\"\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Delete a container file",
+      "source_url": "https://developers.openai.com/api/reference/resources/containers/subresources/files/methods/delete",
+      "endpoint": {
+        "method": "DELETE",
+        "uri": "/containers/{container_id}/files/{file_id}",
+        "request_type": "application/json"
+      },
+      "description": "Delete Container File",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers/$CONTAINER_ID/files/$FILE_ID \\\n    -X DELETE \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl -X DELETE https://api.openai.com/v1/containers/cntr_682dfebaacac8198bbfe9c2474fb6f4a085685cbe3cb5863/files/cfile_682e0e8a43c88191a7978f477a09bdf5 \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n    \"id\": \"cfile_682e0e8a43c88191a7978f477a09bdf5\",\n    \"object\": \"container.file.deleted\",\n    \"deleted\": true\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "List container files",
+      "source_url": "https://developers.openai.com/api/reference/resources/containers/subresources/files/methods/list",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/containers/{container_id}/files",
+        "request_type": "application/json"
+      },
+      "description": "List Container files",
+      "parameters": {
+        "path": [],
+        "query": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers/$CONTAINER_ID/files \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"data\": [\n    {\n      \"id\": \"id\",\n      \"bytes\": 0,\n      \"container_id\": \"container_id\",\n      \"created_at\": 0,\n      \"object\": \"object\",\n      \"path\": \"path\",\n      \"source\": \"source\"\n    }\n  ],\n  \"first_id\": \"first_id\",\n  \"has_more\": true,\n  \"last_id\": \"last_id\",\n  \"object\": \"list\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers/cntr_682e0e7318108198aa783fd921ff305e08e78805b9fdbb04/files \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n    \"object\": \"list\",\n    \"data\": [\n        {\n            \"id\": \"cfile_682e0e8a43c88191a7978f477a09bdf5\",\n            \"object\": \"container.file\",\n            \"created_at\": 1747848842,\n            \"bytes\": 880,\n            \"container_id\": \"cntr_682e0e7318108198aa783fd921ff305e08e78805b9fdbb04\",\n            \"path\": \"/mnt/data/88e12fa445d32636f190a0b33daed6cb-tsconfig.json\",\n            \"source\": \"user\"\n        }\n    ],\n    \"first_id\": \"cfile_682e0e8a43c88191a7978f477a09bdf5\",\n    \"has_more\": false,\n    \"last_id\": \"cfile_682e0e8a43c88191a7978f477a09bdf5\"\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Retrieve container file",
+      "source_url": "https://developers.openai.com/api/reference/resources/containers/subresources/files/methods/retrieve",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/containers/{container_id}/files/{file_id}",
+        "request_type": "application/json"
+      },
+      "description": "Retrieve Container File",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers/$CONTAINER_ID/files/$FILE_ID \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"bytes\": 0,\n  \"container_id\": \"container_id\",\n  \"created_at\": 0,\n  \"object\": \"object\",\n  \"path\": \"path\",\n  \"source\": \"source\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers/container_123/files/file_456 \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n    \"id\": \"cfile_682e0e8a43c88191a7978f477a09bdf5\",\n    \"object\": \"container.file\",\n    \"created_at\": 1747848842,\n    \"bytes\": 880,\n    \"container_id\": \"cntr_682e0e7318108198aa783fd921ff305e08e78805b9fdbb04\",\n    \"path\": \"/mnt/data/88e12fa445d32636f190a0b33daed6cb-tsconfig.json\",\n    \"source\": \"user\"\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Retrieve container file content",
+      "source_url": "https://developers.openai.com/api/reference/resources/containers/subresources/files/subresources/content/methods/retrieve",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/containers/{container_id}/files/{file_id}/content",
+        "request_type": "application/json"
+      },
+      "description": "Retrieve Container File Content",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers/$CONTAINER_ID/files/$FILE_ID/content \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/containers/container_123/files/cfile_456/content \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "<binary content of the file>"
+        }
+      ],
+      "events_or_schemas": []
+    }
+  ]
+}

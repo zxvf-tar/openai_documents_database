@@ -1,0 +1,51 @@
+{
+  "category": "codex",
+  "count": 3,
+  "documents": [
+    {
+      "title": "ChatGPT | ChatGPT Learn",
+      "source_url": "https://developers.openai.com/codex",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "For the complete documentation index, see . Markdown versions of documentation pages are available by appending to the page URL. ChatGPT Get started Quickstart Use ChatGPT Get started with Work Import from another agent Foundations Prompting Personalize ChatGPT Skills & Plugins Permissions Explore What's new Models Pricing Glossary Available on ChatGPT desktop app ChatGPT on the web Codex CLI Codex IDE extension Codex cloud Releases Changelog Feature Maturity Open Source Overview Start with a goal, idea, or task. ChatGPT can gather context, take action, and produce something useful. Quickstart Explore use cases Codex New chat ⌘N Search ⌘K Scheduled Plugins Sites Pull requests Pinned Update landing page illustrations 2m Projects developers-website codex Chats Polish onboarding flow 1h Review sidebar changes 3h What should we build? Explore and understand code Build a new feature, app, or tool Review code and suggest changes Fix issues and failures Choose project main On my computer Do anything 5.6 Sol Extra High 1/8 What’s new View all updates July 13–17, 2026 Keep Work conversations and Projects together on desktop Use cloud Work conversations across devices, keep local conversations on your computer, and open ChatGPT Projects in the desktop app. Control parallel Codex work with Codex Micro Use Codex Micro's Agent Keys, Command Keys, analog stick, and dial to control up to six chats from a physical desktop surface. July 6–10, 2026 Take on ambitious work in ChatGPT ChatGPT Work can gather context across files and plugins, take action, and produce reviewable deliverables. Choose the right GPT-5.6 model Compare Sol for flagship capability, Terra for balanced everyday work, and Luna for speed and lower cost. Get started Start with ChatGPT and bring your existing work with you. Foundations Learn the core patterns for prompting, personalization, and permissions. Explore Browse updates, models, pricing, and essential terminology. Available on Choose the ChatGPT or Codex surface that fits your workflow. Releases Follow product changes, feature maturity, and open-source work. Ask AI",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Resources | ChatGPT Learn",
+      "source_url": "https://developers.openai.com/codex/resources",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "For the complete documentation index, see . Markdown versions of documentation pages are available by appending to the page URL. ChatGPT OpenAI Academy Online trainings Community Codex Ambassadors Codex for Students Codex for Open Source Meetups Blog Company blog Developer blog Resources Videos and stories for working with ChatGPT and Codex. Latest videos Product updates, demos, and stories from ChatGPT and Codex. View all Solutions Engineering · Jul 1, 2026 Codex for Solutions Engineers: Making AI Tangible for Customers Builders Unscripted · Jun 26, 2026 Builders Unscripted: Ep. 4 - Pietro Schirano Skills · Jun 18, 2026 Record & Replay in Codex Plugins · Jun 15, 2026 Build and test iOS apps without leaving Codex Solutions Engineering · Jun 15, 2026 Codex as a Solutions Engineering Partner Finance · Jun 12, 2026 Analyze earnings and update your investment thesis with Codex Blog posts View all Mastering remote engineering work from your phone Use Remote in the ChatGPT mobile app to start, steer, review, and organize engineering work. Jun 23, 2026 Codex Using skills to accelerate OSS maintenance Using skills and GitHub Actions to optimize Codex workflows in the OpenAI Agents SDK repos. Mar 9, 2026 Codex Run long horizon tasks with Codex Feb 23, 2026 Codex Help center Frequently asked account and billing questions Developer forum Discuss topics with other developers OpenAI Academy Courses and resources for learning about AI Status Check the status of OpenAI services Ask AI",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "ChatGPT use cases",
+      "source_url": "https://developers.openai.com/codex/use-cases",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "For the complete documentation index, see . Markdown versions of documentation pages are available by appending to the page URL. ChatGPT Filters Reset filters Category All Engineering Evaluation Front-end Quality Sciences Native iOS Mobile macOS Workflows Automation Data Integrations Knowledge Work Team All Design Design Education Engineering Finance Operations Personal Product QA Research Sales Task type All Analysis Code Design Testing Workflow Use cases Try these ChatGPT and Codex workflows Workflow Knowledge Work Analysis Collections Productivity & Collaboration Coordinate work across plugins, data, and teams. Business Operations Turn initiative context and metrics into decision-ready work. Data Science Turn questions, dashboards, and raw data into review-ready analysis. Web development Build responsive UI from designs and prompts. Game development Prototype loops, UI, and gameplay faster. Native development Build and debug iOS and macOS apps. Production systems Navigate, refactor, and review real codebases. Security Assess code, review changes, and remediate security findings. Finance Build, review, and report from financial models and operating data. Sales Turn account context and deal signals into pipeline actions. Life Sciences Use GPT-Rosalind to accelerate scientific research and drug discovery. Education Turn teaching, learning, and academic work into review-ready artifacts. Featured Start with common ChatGPT workflows. Get your email to inbox zero Clear the backlog, draft replies in your voice, and stay on top of new email. Automation Integrations Use your computer with ChatGPT Let ChatGPT click, type, and navigate apps on your macOS or Windows computer. Knowledge Work Workflow Follow a goal Give Codex a durable objective for long-running work. Engineering Automation All use cases Sort: Recommended Create or revise a slide deck Turn notes, data, or an existing presentation into a slide deck. Data Integrations Get your email to inbox zero Clear the backlog, draft replies in your voice, and stay on top of new email. Automation Integrations Use your computer with ChatGPT Let ChatGPT click, type, and navigate apps on your macOS or Windows computer. Knowledge Work Workflow Set up a work chief of staff Stay on top of your priorities, meetings, messages, and commitments. Automation Integrations Discover protein folding models Turn protein-folding hypotheses into benchmarked experiment loops. Sciences Engineering Build a dashboard that stays up to date Turn your data into a private dashboard and keep it up to date. Data Automation Analyze product feedback across tools Turn Slack threads, survey exports, and issue queues into clear themes and follow-ups. Data Integrations Clean and prepare messy data Process tabular data without affecting the original. Data Knowledge Work Prioritize drug targets Rank drug targets across multiple evidence lanes. Sciences Data Annotate scRNA-seq data Review single-cell QC, annotations, and UMAPs in one chat. Sciences Data Validate bulk RNA-seq inputs Validate bulk RNA-seq inputs before differential expression. Sciences Data Forecast cash flow Find the liquidity low point in an editable forecast workbook. Data Knowledge Work Ask AI",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    }
+  ]
+}

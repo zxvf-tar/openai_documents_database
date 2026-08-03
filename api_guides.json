@@ -1,0 +1,225 @@
+{
+  "category": "api_guides",
+  "count": 4,
+  "documents": [
+    {
+      "title": "Agents SDK",
+      "source_url": "https://developers.openai.com/api/docs/guides/agents",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "Agents are applications that plan, call tools, collaborate across specialists, and keep enough state to complete multi-step work.",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": [
+        "Agents SDK vs. Responses API"
+      ]
+    },
+    {
+      "title": "Production best practices",
+      "source_url": "https://developers.openai.com/api/docs/guides/production-best-practices",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "This guide provides a comprehensive set of best practices to help you transition from prototype to production. Whether you are a seasoned machine learning engineer or a recent enthusiast, this guide should provide you with the tools you need to successfully put the platform to work in a production setting: from securing access to our API to designing a robust architecture that can handle high traffic volumes. Use this guide to help develop a plan for deploying your application as smoothly and effectively as possible. If you want to explore best practices for going into production further, please check out our Developer Day talk: <iframe width=\"100%\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/XGJNo8TpuVA?si=mvYm3Un23iHnlXcg\" title=\"YouTube video player\" frameBorder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowFullScreen ></iframe>",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Realtime and audio",
+      "source_url": "https://developers.openai.com/api/docs/guides/realtime",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "Start with the outcome you want to build. Realtime sessions are best for live audio that needs low latency. Request-based audio APIs are best for files, bounded requests, or generated speech that doesn't need a live session.",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Using tools",
+      "source_url": "https://developers.openai.com/api/docs/guides/tools",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "> When generating model responses or building agents, you can extend capabilities using built-in tools, function calling, Programmatic Tool Calling, tool search, and remote MCP servers. These enable the model to search the web, retrieve from your files, load deferred tool definitions at runtime, call your own functions, compose tool calls in JavaScript, or access third-party services. Only `gpt-5.4` and later models support `tool_search`. Web search Include web search results for the model response ```javascript import OpenAI from \"openai\"; const client = new OpenAI(); const response = await client.responses.create({ model: \"gpt-5.6\", tools: [{ type: \"web_search\" }], input: \"What was a positive news story from today?\", }); console.log(response.output_text); ``` ```python from OpenAI import OpenAI client = OpenAI() response = client.responses.create( model=\"gpt-5.6\", tools=[{\"type\": \"web_search\"}], input=\"What was a positive news story from today?\", ) print(response.output_text) ``` ```bash curl \"https://api.openai.com/v1/responses\" \\ -H \"Content-Type: application/json\" \\ -H \"Authorization: Bearer $OPENAI_API_KEY\" \\ -d '{ \"model\": \"gpt-5.6\", \"tools\": [{\"type\": \"web_search\"}], \"input\": \"what was a positive news story from today?\" }' ``` ```cli openai responses create \\ --model gpt-5.6 \\ --raw-output \\ --transform 'output.#(type==\"message\").content.0.text' <<'YAML' tools: - type: web_search input: What was a positive news story from today? YAML ``` ```csharp using OpenAI.Responses;",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "javascript",
+          "purpose": "request",
+          "context": "",
+          "code": "import OpenAI from \"openai\";\nconst client = new OpenAI();\n\nconst response = await client.responses.create({\n  model: \"gpt-5.6\",\n  tools: [{ type: \"web_search\" }],\n  input: \"What was a positive news story from today?\",\n});\n\nconsole.log(response.output_text);"
+        },
+        {
+          "language": "python",
+          "purpose": "request",
+          "context": "",
+          "code": "from openai import OpenAI\n\nclient = OpenAI()\n\nresponse = client.responses.create(\n    model=\"gpt-5.6\",\n    tools=[{\"type\": \"web_search\"}],\n    input=\"What was a positive news story from today?\",\n)\n\nprint(response.output_text)"
+        },
+        {
+          "language": "bash",
+          "purpose": "request",
+          "context": "",
+          "code": "curl \"https://api.openai.com/v1/responses\" \\\n    -H \"Content-Type: application/json\" \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n        \"model\": \"gpt-5.6\",\n        \"tools\": [{\"type\": \"web_search\"}],\n        \"input\": \"what was a positive news story from today?\"\n}'"
+        },
+        {
+          "language": "cli",
+          "purpose": "schema",
+          "context": "",
+          "code": "openai responses create \\\n  --model gpt-5.6 \\\n  --raw-output \\\n  --transform 'output.#(type==\"message\").content.0.text' <<'YAML'\ntools:\n  - type: web_search\ninput: What was a positive news story from today?\nYAML"
+        },
+        {
+          "language": "csharp",
+          "purpose": "schema",
+          "context": "",
+          "code": "using OpenAI.Responses;\n#pragma warning disable OPENAI001\n\nstring key = Environment.GetEnvironmentVariable(\"OPENAI_API_KEY\")!;\nResponsesClient client = new(key);\n\nCreateResponseOptions options = new() { Model = \"gpt-5.6\" };\noptions.Tools.Add(ResponseTool.CreateWebSearchTool());\noptions.InputItems.Add(\n    ResponseItem.CreateUserMessageItem(\"What was a positive news story from today?\")\n);\n\nResponseResult response = await client.CreateResponseAsync(options);\n\nConsole.WriteLine(response.GetOutputText());"
+        },
+        {
+          "language": "ruby",
+          "purpose": "schema",
+          "context": "",
+          "code": "require \"openai\"\n\nopenai = OpenAI::Client.new\n\nresponse = openai.responses.create(\n  model: \"gpt-5.6\",\n  tools: [{type: \"web_search\"}],\n  input: \"What was a positive news story from today?\"\n)\n\nputs(response.output_text)"
+        },
+        {
+          "language": "python",
+          "purpose": "request",
+          "context": "",
+          "code": "from openai import OpenAI\n\nclient = OpenAI()\n\nresponse = client.responses.create(\n    model=\"gpt-5.6\",\n    input=\"What is deep research by OpenAI?\",\n    tools=[{\"type\": \"file_search\", \"vector_store_ids\": [\"<vector_store_id>\"]}],\n)\nprint(response)"
+        },
+        {
+          "language": "javascript",
+          "purpose": "request",
+          "context": "",
+          "code": "import OpenAI from \"openai\";\nconst openai = new OpenAI();\n\nconst response = await openai.responses.create({\n  model: \"gpt-5.6\",\n  input: \"What is deep research by OpenAI?\",\n  tools: [\n    {\n      type: \"file_search\",\n      vector_store_ids: [\"<vector_store_id>\"],\n    },\n  ],\n});\nconsole.log(response);"
+        },
+        {
+          "language": "csharp",
+          "purpose": "schema",
+          "context": "",
+          "code": "using OpenAI.Responses;\n#pragma warning disable OPENAI001\n\nstring key = Environment.GetEnvironmentVariable(\"OPENAI_API_KEY\")!;\nResponsesClient client = new(key);\n\nCreateResponseOptions options = new() { Model = \"gpt-5.6\" };\noptions.Tools.Add(\n    ResponseTool.CreateFileSearchTool([\"<vector_store_id>\"])\n);\noptions.InputItems.Add(\n    ResponseItem.CreateUserMessageItem(\"What is deep research by OpenAI?\")\n);\n\nResponseResult response = await client.CreateResponseAsync(options);\n\nConsole.WriteLine(response.GetOutputText());"
+        },
+        {
+          "language": "ruby",
+          "purpose": "schema",
+          "context": "",
+          "code": "require \"openai\"\n\nopenai = OpenAI::Client.new\n\nresponse = openai.responses.create(\n  model: \"gpt-5.6\",\n  input: \"What is deep research by OpenAI?\",\n  tools: [\n    {\n      type: \"file_search\",\n      vector_store_ids: [\"<vector_store_id>\"]\n    }\n  ]\n)\n\nputs(response)"
+        },
+        {
+          "language": "python",
+          "purpose": "request",
+          "context": "",
+          "code": "from openai import OpenAI\n\nclient = OpenAI()\n\ncrm_namespace = {\n    \"type\": \"namespace\",\n    \"name\": \"crm\",\n    \"description\": \"CRM tools for customer lookup and order management.\",\n    \"tools\": [\n        {\n            \"type\": \"function\",\n            \"name\": \"get_customer_profile\",\n            \"description\": \"Fetch a customer profile by customer ID.\",\n            \"parameters\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"customer_id\": {\"type\": \"string\"},\n                },\n                \"required\": [\"customer_id\"],\n                \"additionalProperties\": False,\n            },\n        },\n        {\n            \"type\": \"function\",\n            \"name\": \"list_open_orders\",\n            \"description\": \"List open orders for a customer ID.\",\n            # highlight-start:subtle\n            \"defer_loading\": True,\n            # highlight-end\n            \"parameters\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"customer_id\": {\"type\": \"string\"},\n                },\n                \"required\": [\"customer_id\"],\n                \"additionalProperties\": False,\n            },\n        },\n    ],\n}\n\nresponse = client.responses.create(\n    model=\"gpt-5.6\",\n    input=\"List open orders for customer CUST-12345.\",\n    tools=[\n        crm_namespace,\n        # highlight-start:subtle\n        {\"type\": \"tool_search\"},\n        # highlight-end\n    ],\n    parallel_tool_calls=False,\n)\n\nprint(response.output)"
+        },
+        {
+          "language": "javascript",
+          "purpose": "request",
+          "context": "",
+          "code": "import OpenAI from \"openai\";\n\nconst client = new OpenAI();\n\n/** @type {OpenAI.Responses.NamespaceTool} */\nconst crmNamespace = {\n  type: \"namespace\",\n  name: \"crm\",\n  description: \"CRM tools for customer lookup and order management.\",\n  tools: [\n    {\n      type: \"function\",\n      name: \"get_customer_profile\",\n      description: \"Fetch a customer profile by customer ID.\",\n      parameters: {\n        type: \"object\",\n        properties: {\n          customer_id: { type: \"string\" },\n        },\n        required: [\"customer_id\"],\n        additionalProperties: false,\n      },\n    },\n    {\n      type: \"function\",\n      name: \"list_open_orders\",\n      description: \"List open orders for a customer ID.\",\n      // highlight-start:subtle\n      defer_loading: true,\n      // highlight-end\n      parameters: {\n        type: \"object\",\n        properties: {\n          customer_id: { type: \"string\" },\n        },\n        required: [\"customer_id\"],\n        additionalProperties: false,\n      },\n    },\n  ],\n};\n\nconst response = await client.responses.create({\n  model: \"gpt-5.6\",\n  input: \"List open orders for customer CUST-12345.\",\n  // highlight-start:subtle\n  tools: [crmNamespace, { type: \"tool_search\" }],\n  // highlight-end\n  parallel_tool_calls: false,\n});\n\nconsole.log(response.output);"
+        },
+        {
+          "language": "javascript",
+          "purpose": "request",
+          "context": "",
+          "code": "import OpenAI from \"openai\";\nconst client = new OpenAI();\n\n/** @type {OpenAI.Responses.Tool[]} */\nconst tools = [\n  {\n    type: \"function\",\n    name: \"get_weather\",\n    description: \"Get current temperature for a given location.\",\n    parameters: {\n      type: \"object\",\n      properties: {\n        location: {\n          type: \"string\",\n          description: \"City and country e.g. Bogotá, Colombia\",\n        },\n      },\n      required: [\"location\"],\n      additionalProperties: false,\n    },\n    strict: true,\n  },\n];\n\nconst response = await client.responses.create({\n  model: \"gpt-5.6\",\n  input: [\n    { role: \"user\", content: \"What is the weather like in Paris today?\" },\n  ],\n  tools,\n});\n\nconsole.log(response.output[0]);"
+        },
+        {
+          "language": "python",
+          "purpose": "request",
+          "context": "",
+          "code": "from openai import OpenAI\n\nclient = OpenAI()\n\ntools = [\n    {\n        \"type\": \"function\",\n        \"name\": \"get_weather\",\n        \"description\": \"Get current temperature for a given location.\",\n        \"parameters\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"location\": {\n                    \"type\": \"string\",\n                    \"description\": \"City and country e.g. Bogotá, Colombia\",\n                }\n            },\n            \"required\": [\"location\"],\n            \"additionalProperties\": False,\n        },\n        \"strict\": True,\n    },\n]\n\nresponse = client.responses.create(\n    model=\"gpt-5.6\",\n    input=[\n        {\"role\": \"user\", \"content\": \"What is the weather like in Paris today?\"},\n    ],\n    tools=tools,\n)\n\nprint(response.output[0].to_json())"
+        },
+        {
+          "language": "csharp",
+          "purpose": "schema",
+          "context": "",
+          "code": "using System.Text.Json;\nusing System.Text.Json.Serialization.Metadata;\nusing OpenAI.Responses;\n#pragma warning disable CA1869\n#pragma warning disable OPENAI001\n\nstring key = Environment.GetEnvironmentVariable(\"OPENAI_API_KEY\")!;\nResponsesClient client = new(key);\n\nCreateResponseOptions options = new() { Model = \"gpt-5.6\" };\noptions.Tools.Add(\n    ResponseTool.CreateFunctionTool(\n        functionName: \"get_weather\",\n        functionDescription: \"Get current temperature for a given location.\",\n        functionParameters: BinaryData.FromString(\n            \"\"\"\n            {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"location\": {\n                        \"type\": \"string\",\n                        \"description\": \"City and country e.g. Bogotá, Colombia\"\n                    }\n                },\n                \"required\": [\"location\"],\n                \"additionalProperties\": false\n            }\n            \"\"\"\n        ),\n        strictModeEnabled: true\n    )\n);\noptions.InputItems.Add(\n    ResponseItem.CreateUserMessageItem(\"What is the weather like in Paris today?\")\n);\n\nResponseResult response = client.CreateResponse(options);\nConsole.WriteLine(\n    JsonSerializer.Serialize(\n        response.OutputItems[0],\n        new JsonSerializerOptions\n        {\n            TypeInfoResolver = new DefaultJsonTypeInfoResolver(),\n        }\n    )\n);"
+        },
+        {
+          "language": "bash",
+          "purpose": "request",
+          "context": "",
+          "code": "curl -X POST https://api.openai.com/v1/responses \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"model\": \"gpt-5.6\",\n    \"input\": [\n      {\"role\": \"user\", \"content\": \"What is the weather like in Paris today?\"}\n    ],\n    \"tools\": [\n      {\n        \"type\": \"function\",\n        \"name\": \"get_weather\",\n        \"description\": \"Get current temperature for a given location.\",\n        \"parameters\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"location\": {\n              \"type\": \"string\",\n              \"description\": \"City and country e.g. Bogotá, Colombia\"\n            }\n          },\n          \"required\": [\"location\"],\n          \"additionalProperties\": false\n        },\n        \"strict\": true\n      }\n    ]\n  }'"
+        },
+        {
+          "language": "ruby",
+          "purpose": "schema",
+          "context": "",
+          "code": "require \"openai\"\n\nopenai = OpenAI::Client.new\n\ntools = [\n  {\n    type: \"function\",\n    name: \"get_weather\",\n    description: \"Get current temperature for a given location.\",\n    parameters: {\n      type: \"object\",\n      properties: {\n        location: {\n          type: \"string\",\n          description: \"City and country e.g. Bogotá, Colombia\"\n        }\n      },\n      required: [\"location\"],\n      additionalProperties: false\n    },\n    strict: true\n  }\n]\n\nresponse = openai.responses.create(\n  model: \"gpt-5.6\",\n  input: [\n    {role: \"user\", content: \"What is the weather like in Paris today?\"}\n  ],\n  tools: tools\n)\n\nputs(response.output.first.to_json)"
+        },
+        {
+          "language": "bash",
+          "purpose": "request",
+          "context": "",
+          "code": "curl https://api.openai.com/v1/responses \\ \n-H \"Content-Type: application/json\" \\ \n-H \"Authorization: Bearer $OPENAI_API_KEY\" \\ \n-d '{\n  \"model\": \"gpt-5.6\",\n    \"tools\": [\n      {\n        \"type\": \"mcp\",\n        \"server_label\": \"dmcp\",\n        \"server_description\": \"A Dungeons and Dragons MCP server to assist with dice rolling.\",\n        \"server_url\": \"https://dmcp-server.deno.dev/mcp\",\n        \"require_approval\": \"never\"\n      }\n    ],\n    \"input\": \"Roll 2d4+1\"\n  }'"
+        },
+        {
+          "language": "javascript",
+          "purpose": "request",
+          "context": "",
+          "code": "import OpenAI from \"openai\";\nconst client = new OpenAI();\n\nconst resp = await client.responses.create({\n  model: \"gpt-5.6\",\n  tools: [\n    {\n      type: \"mcp\",\n      server_label: \"dmcp\",\n      server_description:\n        \"A Dungeons and Dragons MCP server to assist with dice rolling.\",\n      server_url: \"https://dmcp-server.deno.dev/mcp\",\n      require_approval: \"never\",\n    },\n  ],\n  input: \"Roll 2d4+1\",\n});\n\nconsole.log(resp.output_text);"
+        },
+        {
+          "language": "python",
+          "purpose": "request",
+          "context": "",
+          "code": "from openai import OpenAI\n\nclient = OpenAI()\n\nresp = client.responses.create(\n    model=\"gpt-5.6\",\n    tools=[\n        {\n            \"type\": \"mcp\",\n            \"server_label\": \"dmcp\",\n            \"server_description\": \"A Dungeons and Dragons MCP server to assist with dice rolling.\",\n            \"server_url\": \"https://dmcp-server.deno.dev/mcp\",\n            \"require_approval\": \"never\",\n        },\n    ],\n    input=\"Roll 2d4+1\",\n)\n\nprint(resp.output_text)"
+        },
+        {
+          "language": "csharp",
+          "purpose": "schema",
+          "context": "",
+          "code": "using OpenAI.Responses;\n#pragma warning disable OPENAI001\n\nstring key = Environment.GetEnvironmentVariable(\"OPENAI_API_KEY\")!;\nResponsesClient client = new(key);\n\nCreateResponseOptions options = new() { Model = \"gpt-5.6\" };\noptions.Tools.Add(\n    ResponseTool.CreateMcpTool(\n        serverLabel: \"dmcp\",\n        serverUri: new Uri(\"https://dmcp-server.deno.dev/mcp\"),\n        toolCallApprovalPolicy: GlobalMcpToolCallApprovalPolicy.NeverRequireApproval\n    )\n);\noptions.InputItems.Add(ResponseItem.CreateUserMessageItem(\"Roll 2d4+1\"));\n\nResponseResult response = await client.CreateResponseAsync(options);\n\nConsole.WriteLine(response.GetOutputText());"
+        },
+        {
+          "language": "ruby",
+          "purpose": "schema",
+          "context": "",
+          "code": "require \"openai\"\n\nopenai = OpenAI::Client.new\n\nresponse = openai.responses.create(\n  model: \"gpt-5.6\",\n  tools: [\n    {\n      type: \"mcp\",\n      server_label: \"dmcp\",\n      server_description: \"A Dungeons and Dragons MCP server to assist with dice rolling.\",\n      server_url: \"https://dmcp-server.deno.dev/mcp\",\n      require_approval: \"never\"\n    }\n  ],\n  input: \"Roll 2d4+1\"\n)\n\nputs(response.output_text)"
+        },
+        {
+          "language": "typescript",
+          "purpose": "request",
+          "context": "Usage in the Agents SDK",
+          "code": "import { tool } from \"@openai/agents\";\nimport { z } from \"zod\";\n\nconst getWeatherTool = tool({\n  name: \"get_weather\",\n  description: \"Get the weather for a given city.\",\n  parameters: z.object({ city: z.string() }),\n  async execute({ city }) {\n    return `The weather in ${city} is sunny.`;\n  },\n});"
+        },
+        {
+          "language": "python",
+          "purpose": "request",
+          "context": "Usage in the Agents SDK",
+          "code": "from agents import function_tool\n\n\n@function_tool\ndef get_weather(city: str) -> str:\n    \"\"\"Get the weather for a given city.\"\"\"\n    return f\"The weather in {city} is sunny.\""
+        },
+        {
+          "language": "typescript",
+          "purpose": "request",
+          "context": "Usage in the Agents SDK",
+          "code": "import { Agent } from \"@openai/agents\";\n\nconst summarizer = new Agent({\n  name: \"Summarizer\",\n  instructions: \"Generate a concise summary of the supplied text.\",\n});\n\nconst mainAgent = new Agent({\n  name: \"Research assistant\",\n  tools: [\n    summarizer.asTool({\n      toolName: \"summarize_text\",\n      toolDescription: \"Generate a concise summary of the supplied text.\",\n    }),\n  ],\n});"
+        },
+        {
+          "language": "python",
+          "purpose": "request",
+          "context": "Usage in the Agents SDK",
+          "code": "from agents import Agent\n\nsummarizer = Agent(\n    name=\"Summarizer\",\n    instructions=\"Generate a concise summary of the supplied text.\",\n)\n\nmain_agent = Agent(\n    name=\"Research assistant\",\n    tools=[\n        summarizer.as_tool(\n            tool_name=\"summarize_text\",\n            tool_description=\"Generate a concise summary of the supplied text.\",\n        )\n    ],\n)"
+        }
+      ],
+      "events_or_schemas": []
+    }
+  ]
+}

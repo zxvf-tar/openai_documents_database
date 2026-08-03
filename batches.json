@@ -1,0 +1,174 @@
+{
+  "category": "batches",
+  "count": 4,
+  "documents": [
+    {
+      "title": "Cancel batch",
+      "source_url": "https://developers.openai.com/api/reference/resources/batches/methods/cancel",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/batches/{batch_id}/cancel",
+        "request_type": "application/json"
+      },
+      "description": "Cancels an in-progress batch. The batch will be in status `cancelling` for up to 10 minutes, before changing to `cancelled`, where it will have partial results (if any) available in the output file.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/batches/$BATCH_ID/cancel \\\n    -X POST \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"completion_window\": \"completion_window\",\n  \"created_at\": 0,\n  \"endpoint\": \"endpoint\",\n  \"input_file_id\": \"input_file_id\",\n  \"object\": \"batch\",\n  \"status\": \"validating\",\n  \"cancelled_at\": 0,\n  \"cancelling_at\": 0,\n  \"completed_at\": 0,\n  \"error_file_id\": \"error_file_id\",\n  \"errors\": {\n    \"data\": [\n      {\n        \"code\": \"code\",\n        \"line\": 0,\n        \"message\": \"message\",\n        \"param\": \"param\"\n      }\n    ],\n    \"object\": \"object\"\n  },\n  \"expired_at\": 0,\n  \"expires_at\": 0,\n  \"failed_at\": 0,\n  \"finalizing_at\": 0,\n  \"in_progress_at\": 0,\n  \"metadata\": {\n    \"foo\": \"string\"\n  },\n  \"model\": \"model\",\n  \"output_file_id\": \"output_file_id\",\n  \"request_counts\": {\n    \"completed\": 0,\n    \"failed\": 0,\n    \"total\": 0\n  },\n  \"usage\": {\n    \"input_tokens\": 0,\n    \"input_tokens_details\": {\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 0,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 0\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/batches/batch_abc123/cancel \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -X POST"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"batch_abc123\",\n  \"object\": \"batch\",\n  \"endpoint\": \"/v1/chat/completions\",\n  \"errors\": null,\n  \"input_file_id\": \"file-abc123\",\n  \"completion_window\": \"24h\",\n  \"status\": \"cancelling\",\n  \"output_file_id\": null,\n  \"error_file_id\": null,\n  \"created_at\": 1711471533,\n  \"in_progress_at\": 1711471538,\n  \"expires_at\": 1711557933,\n  \"finalizing_at\": null,\n  \"completed_at\": null,\n  \"failed_at\": null,\n  \"expired_at\": null,\n  \"cancelling_at\": 1711475133,\n  \"cancelled_at\": null,\n  \"request_counts\": {\n    \"total\": 100,\n    \"completed\": 23,\n    \"failed\": 1\n  },\n  \"metadata\": {\n    \"customer_id\": \"user_123456789\",\n    \"batch_description\": \"Nightly eval job\",\n  }\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Create batch",
+      "source_url": "https://developers.openai.com/api/reference/resources/batches/methods/create",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/batches",
+        "request_type": "application/json"
+      },
+      "description": "Creates and executes a batch from an uploaded file of requests",
+      "parameters": {
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/batches \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"completion_window\": \"24h\",\n          \"endpoint\": \"/v1/responses\",\n          \"input_file_id\": \"input_file_id\"\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"completion_window\": \"completion_window\",\n  \"created_at\": 0,\n  \"endpoint\": \"endpoint\",\n  \"input_file_id\": \"input_file_id\",\n  \"object\": \"batch\",\n  \"status\": \"validating\",\n  \"cancelled_at\": 0,\n  \"cancelling_at\": 0,\n  \"completed_at\": 0,\n  \"error_file_id\": \"error_file_id\",\n  \"errors\": {\n    \"data\": [\n      {\n        \"code\": \"code\",\n        \"line\": 0,\n        \"message\": \"message\",\n        \"param\": \"param\"\n      }\n    ],\n    \"object\": \"object\"\n  },\n  \"expired_at\": 0,\n  \"expires_at\": 0,\n  \"failed_at\": 0,\n  \"finalizing_at\": 0,\n  \"in_progress_at\": 0,\n  \"metadata\": {\n    \"foo\": \"string\"\n  },\n  \"model\": \"model\",\n  \"output_file_id\": \"output_file_id\",\n  \"request_counts\": {\n    \"completed\": 0,\n    \"failed\": 0,\n    \"total\": 0\n  },\n  \"usage\": {\n    \"input_tokens\": 0,\n    \"input_tokens_details\": {\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 0,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 0\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/batches \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"input_file_id\": \"file-abc123\",\n    \"endpoint\": \"/v1/chat/completions\",\n    \"completion_window\": \"24h\"\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"batch_abc123\",\n  \"object\": \"batch\",\n  \"endpoint\": \"/v1/chat/completions\",\n  \"errors\": null,\n  \"input_file_id\": \"file-abc123\",\n  \"completion_window\": \"24h\",\n  \"status\": \"validating\",\n  \"output_file_id\": null,\n  \"error_file_id\": null,\n  \"created_at\": 1711471533,\n  \"in_progress_at\": null,\n  \"expires_at\": null,\n  \"finalizing_at\": null,\n  \"completed_at\": null,\n  \"failed_at\": null,\n  \"expired_at\": null,\n  \"cancelling_at\": null,\n  \"cancelled_at\": null,\n  \"request_counts\": {\n    \"total\": 0,\n    \"completed\": 0,\n    \"failed\": 0\n  },\n  \"metadata\": {\n    \"customer_id\": \"user_123456789\",\n    \"batch_description\": \"Nightly eval job\",\n  }\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "List batches",
+      "source_url": "https://developers.openai.com/api/reference/resources/batches/methods/list",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/batches",
+        "request_type": "application/json"
+      },
+      "description": "List your organization's batches.",
+      "parameters": {
+        "query": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/batches \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"data\": [\n    {\n      \"id\": \"id\",\n      \"completion_window\": \"completion_window\",\n      \"created_at\": 0,\n      \"endpoint\": \"endpoint\",\n      \"input_file_id\": \"input_file_id\",\n      \"object\": \"batch\",\n      \"status\": \"validating\",\n      \"cancelled_at\": 0,\n      \"cancelling_at\": 0,\n      \"completed_at\": 0,\n      \"error_file_id\": \"error_file_id\",\n      \"errors\": {\n        \"data\": [\n          {\n            \"code\": \"code\",\n            \"line\": 0,\n            \"message\": \"message\",\n            \"param\": \"param\"\n          }\n        ],\n        \"object\": \"object\"\n      },\n      \"expired_at\": 0,\n      \"expires_at\": 0,\n      \"failed_at\": 0,\n      \"finalizing_at\": 0,\n      \"in_progress_at\": 0,\n      \"metadata\": {\n        \"foo\": \"string\"\n      },\n      \"model\": \"model\",\n      \"output_file_id\": \"output_file_id\",\n      \"request_counts\": {\n        \"completed\": 0,\n        \"failed\": 0,\n        \"total\": 0\n      },\n      \"usage\": {\n        \"input_tokens\": 0,\n        \"input_tokens_details\": {\n          \"cached_tokens\": 0\n        },\n        \"output_tokens\": 0,\n        \"output_tokens_details\": {\n          \"reasoning_tokens\": 0\n        },\n        \"total_tokens\": 0\n      }\n    }\n  ],\n  \"has_more\": true,\n  \"object\": \"list\",\n  \"first_id\": \"batch_abc123\",\n  \"last_id\": \"batch_abc456\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/batches?limit=2 \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -H \"Content-Type: application/json\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"batch_abc123\",\n      \"object\": \"batch\",\n      \"endpoint\": \"/v1/chat/completions\",\n      \"errors\": null,\n      \"input_file_id\": \"file-abc123\",\n      \"completion_window\": \"24h\",\n      \"status\": \"completed\",\n      \"output_file_id\": \"file-cvaTdG\",\n      \"error_file_id\": \"file-HOWS94\",\n      \"created_at\": 1711471533,\n      \"in_progress_at\": 1711471538,\n      \"expires_at\": 1711557933,\n      \"finalizing_at\": 1711493133,\n      \"completed_at\": 1711493163,\n      \"failed_at\": null,\n      \"expired_at\": null,\n      \"cancelling_at\": null,\n      \"cancelled_at\": null,\n      \"request_counts\": {\n        \"total\": 100,\n        \"completed\": 95,\n        \"failed\": 5\n      },\n      \"metadata\": {\n        \"customer_id\": \"user_123456789\",\n        \"batch_description\": \"Nightly job\",\n      }\n    },\n    { ... },\n  ],\n  \"first_id\": \"batch_abc123\",\n  \"last_id\": \"batch_abc456\",\n  \"has_more\": true\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Retrieve batch",
+      "source_url": "https://developers.openai.com/api/reference/resources/batches/methods/retrieve",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/batches/{batch_id}",
+        "request_type": "application/json"
+      },
+      "description": "Retrieves a batch.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/batches/$BATCH_ID \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"completion_window\": \"completion_window\",\n  \"created_at\": 0,\n  \"endpoint\": \"endpoint\",\n  \"input_file_id\": \"input_file_id\",\n  \"object\": \"batch\",\n  \"status\": \"validating\",\n  \"cancelled_at\": 0,\n  \"cancelling_at\": 0,\n  \"completed_at\": 0,\n  \"error_file_id\": \"error_file_id\",\n  \"errors\": {\n    \"data\": [\n      {\n        \"code\": \"code\",\n        \"line\": 0,\n        \"message\": \"message\",\n        \"param\": \"param\"\n      }\n    ],\n    \"object\": \"object\"\n  },\n  \"expired_at\": 0,\n  \"expires_at\": 0,\n  \"failed_at\": 0,\n  \"finalizing_at\": 0,\n  \"in_progress_at\": 0,\n  \"metadata\": {\n    \"foo\": \"string\"\n  },\n  \"model\": \"model\",\n  \"output_file_id\": \"output_file_id\",\n  \"request_counts\": {\n    \"completed\": 0,\n    \"failed\": 0,\n    \"total\": 0\n  },\n  \"usage\": {\n    \"input_tokens\": 0,\n    \"input_tokens_details\": {\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 0,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 0\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/batches/batch_abc123 \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -H \"Content-Type: application/json\" \\"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"batch_abc123\",\n  \"object\": \"batch\",\n  \"endpoint\": \"/v1/completions\",\n  \"errors\": null,\n  \"input_file_id\": \"file-abc123\",\n  \"completion_window\": \"24h\",\n  \"status\": \"completed\",\n  \"output_file_id\": \"file-cvaTdG\",\n  \"error_file_id\": \"file-HOWS94\",\n  \"created_at\": 1711471533,\n  \"in_progress_at\": 1711471538,\n  \"expires_at\": 1711557933,\n  \"finalizing_at\": 1711493133,\n  \"completed_at\": 1711493163,\n  \"failed_at\": null,\n  \"expired_at\": null,\n  \"cancelling_at\": null,\n  \"cancelled_at\": null,\n  \"request_counts\": {\n    \"total\": 100,\n    \"completed\": 95,\n    \"failed\": 5\n  },\n  \"metadata\": {\n    \"customer_id\": \"user_123456789\",\n    \"batch_description\": \"Nightly eval job\",\n  }\n}"
+        }
+      ],
+      "events_or_schemas": []
+    }
+  ]
+}

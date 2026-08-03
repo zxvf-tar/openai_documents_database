@@ -1,0 +1,630 @@
+{
+  "category": "fine_tuning",
+  "count": 13,
+  "documents": [
+    {
+      "title": "Run grader",
+      "source_url": "https://developers.openai.com/api/reference/resources/fine_tuning/subresources/alpha/subresources/graders/methods/run",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/fine_tuning/alpha/graders/run",
+        "request_type": "application/json"
+      },
+      "description": "Run a grader.",
+      "parameters": {
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/alpha/graders/run \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"grader\": {\n            \"input\": \"input\",\n            \"name\": \"name\",\n            \"operation\": \"eq\",\n            \"reference\": \"reference\",\n            \"type\": \"string_check\"\n          },\n          \"model_sample\": \"model_sample\"\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"metadata\": {\n    \"errors\": {\n      \"formula_parse_error\": true,\n      \"invalid_variable_error\": true,\n      \"model_grader_parse_error\": true,\n      \"model_grader_refusal_error\": true,\n      \"model_grader_server_error\": true,\n      \"model_grader_server_error_details\": \"model_grader_server_error_details\",\n      \"other_error\": true,\n      \"python_grader_runtime_error\": true,\n      \"python_grader_runtime_error_details\": \"python_grader_runtime_error_details\",\n      \"python_grader_server_error\": true,\n      \"python_grader_server_error_type\": \"python_grader_server_error_type\",\n      \"sample_parse_error\": true,\n      \"truncated_observation_error\": true,\n      \"unresponsive_reward_error\": true\n    },\n    \"execution_time\": 0,\n    \"name\": \"name\",\n    \"sampled_model_name\": \"sampled_model_name\",\n    \"scores\": {\n      \"foo\": \"bar\"\n    },\n    \"token_usage\": 0,\n    \"type\": \"type\"\n  },\n  \"model_grader_token_usage_per_model\": {\n    \"foo\": \"bar\"\n  },\n  \"reward\": 0,\n  \"sub_rewards\": {\n    \"foo\": \"bar\"\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "response",
+          "context": "Score an audio response",
+          "code": "curl -X POST https://api.openai.com/v1/fine_tuning/alpha/graders/run \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"grader\": {\n      \"type\": \"score_model\",\n      \"name\": \"Audio clarity grader\",\n      \"input\": [\n        {\n          \"role\": \"user\",\n          \"content\": [\n            {\n              \"type\": \"input_text\",\n              \"text\": \"Listen to the clip and return a confidence score from 0 to 1 that the speaker said: {{item.target_phrase}}\"\n            },\n            {\n              \"type\": \"input_audio\",\n              \"input_audio\": {\n                \"data\": \"{{item.audio_clip_b64}}\",\n                \"format\": \"mp3\"\n              }\n            }\n          ]\n        }\n      ],\n      \"model\": \"gpt-audio\",\n      \"sampling_params\": {\n        \"temperature\": 0.2,\n        \"top_p\": 1,\n        \"seed\": 123\n      }\n    },\n    \"item\": {\n      \"target_phrase\": \"Please deliver the package on Tuesday\",\n      \"audio_clip_b64\": \"<base64-encoded mp3>\"\n    },\n    \"model_sample\": \"Please deliver the package on Tuesday\"\n  }'"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Score an image caption",
+          "code": "curl -X POST https://api.openai.com/v1/fine_tuning/alpha/graders/run \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"grader\": {\n      \"type\": \"score_model\",\n      \"name\": \"Image caption grader\",\n      \"input\": [\n        {\n          \"role\": \"user\",\n          \"content\": [\n            {\n              \"type\": \"input_text\",\n              \"text\": \"Score how well the provided caption matches the image on a 0-1 scale. Only return the score.\\n\\nCaption: {{sample.output_text}}\"\n            },\n            {\n              \"type\": \"input_image\",\n              \"image_url\": \"https://example.com/dog-catching-ball.png\",\n              \"file_id\": null,\n              \"detail\": \"high\"\n            }\n          ]\n        }\n      ],\n      \"model\": \"gpt-5-mini\",\n      \"sampling_params\": {\n        \"temperature\": 0.2\n      }\n    },\n    \"item\": {\n      \"expected_caption\": \"A golden retriever jumps to catch a tennis ball\"\n    },\n    \"model_sample\": \"A dog leaps to grab a tennis ball mid-air\"\n  }'"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Score text alignment",
+          "code": "curl -X POST https://api.openai.com/v1/fine_tuning/alpha/graders/run \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"grader\": {\n      \"type\": \"score_model\",\n      \"name\": \"Example score model grader\",\n      \"input\": [\n        {\n          \"role\": \"user\",\n          \"content\": [\n            {\n              \"type\": \"input_text\",\n              \"text\": \"Score how close the reference answer is to the model answer on a 0-1 scale. Return only the score.\\n\\nReference answer: {{item.reference_answer}}\\n\\nModel answer: {{sample.output_text}}\"\n            }\n          ]\n        }\n      ],\n      \"model\": \"gpt-5-mini\",\n      \"sampling_params\": {\n        \"temperature\": 1,\n        \"top_p\": 1,\n        \"seed\": 42\n      }\n    },\n    \"item\": {\n      \"reference_answer\": \"fuzzy wuzzy was a bear\"\n    },\n    \"model_sample\": \"fuzzy wuzzy was a bear\"\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"reward\": 1.0,\n  \"metadata\": {\n    \"name\": \"Example score model grader\",\n    \"type\": \"score_model\",\n    \"errors\": {\n      \"formula_parse_error\": false,\n      \"sample_parse_error\": false,\n      \"truncated_observation_error\": false,\n      \"unresponsive_reward_error\": false,\n      \"invalid_variable_error\": false,\n      \"other_error\": false,\n      \"python_grader_server_error\": false,\n      \"python_grader_server_error_type\": null,\n      \"python_grader_runtime_error\": false,\n      \"python_grader_runtime_error_details\": null,\n      \"model_grader_server_error\": false,\n      \"model_grader_refusal_error\": false,\n      \"model_grader_parse_error\": false,\n      \"model_grader_server_error_details\": null\n    },\n    \"execution_time\": 4.365238428115845,\n    \"scores\": {},\n    \"token_usage\": {\n      \"prompt_tokens\": 190,\n      \"total_tokens\": 324,\n      \"completion_tokens\": 134,\n      \"cached_tokens\": 0\n    },\n    \"sampled_model_name\": \"gpt-4o-2024-08-06\"\n  },\n  \"sub_rewards\": {},\n  \"model_grader_token_usage_per_model\": {\n    \"gpt-4o-2024-08-06\": {\n      \"prompt_tokens\": 190,\n      \"total_tokens\": 324,\n      \"completion_tokens\": 134,\n      \"cached_tokens\": 0\n    }\n  }\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Validate grader",
+      "source_url": "https://developers.openai.com/api/reference/resources/fine_tuning/subresources/alpha/subresources/graders/methods/validate",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/fine_tuning/alpha/graders/validate",
+        "request_type": "application/json"
+      },
+      "description": "Validate a grader.",
+      "parameters": {
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/alpha/graders/validate \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"grader\": {\n            \"input\": \"input\",\n            \"name\": \"name\",\n            \"operation\": \"eq\",\n            \"reference\": \"reference\",\n            \"type\": \"string_check\"\n          }\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"grader\": {\n    \"input\": \"input\",\n    \"name\": \"name\",\n    \"operation\": \"eq\",\n    \"reference\": \"reference\",\n    \"type\": \"string_check\"\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/alpha/graders/validate \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"grader\": {\n      \"type\": \"string_check\",\n      \"name\": \"Example string check grader\",\n      \"input\": \"{{sample.output_text}}\",\n      \"reference\": \"{{item.label}}\",\n      \"operation\": \"eq\"\n    }\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"grader\": {\n    \"type\": \"string_check\",\n    \"name\": \"Example string check grader\",\n    \"input\": \"{{sample.output_text}}\",\n    \"reference\": \"{{item.label}}\",\n    \"operation\": \"eq\"\n  }\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Create checkpoint permissions",
+      "source_url": "https://developers.openai.com/api/reference/resources/fine_tuning/subresources/checkpoints/subresources/permissions/methods/create",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions",
+        "request_type": "application/json"
+      },
+      "description": "This enables organization owners to share fine-tuned models with other projects in their organization.",
+      "parameters": {
+        "path": [],
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/checkpoints/$FINE_TUNED_MODEL_CHECKPOINT/permissions \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"project_ids\": [\n            \"string\"\n          ]\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"data\": [\n    {\n      \"id\": \"id\",\n      \"created_at\": 0,\n      \"object\": \"checkpoint.permission\",\n      \"project_id\": \"project_id\"\n    }\n  ],\n  \"has_more\": true,\n  \"object\": \"list\",\n  \"first_id\": \"first_id\",\n  \"last_id\": \"last_id\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/checkpoints/ft:gpt-4o-mini-2024-07-18:org:weather:B7R9VjQd/permissions \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\"\n  -d '{\"project_ids\": [\"proj_abGMw1llN8IrBb6SvvY5A1iH\"]}'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"object\": \"checkpoint.permission\",\n      \"id\": \"cp_zc4Q7MP6XxulcVzj4MZdwsAB\",\n      \"created_at\": 1721764867,\n      \"project_id\": \"proj_abGMw1llN8IrBb6SvvY5A1iH\"\n    }\n  ],\n  \"first_id\": \"cp_zc4Q7MP6XxulcVzj4MZdwsAB\",\n  \"last_id\": \"cp_zc4Q7MP6XxulcVzj4MZdwsAB\",\n  \"has_more\": false\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Delete checkpoint permission",
+      "source_url": "https://developers.openai.com/api/reference/resources/fine_tuning/subresources/checkpoints/subresources/permissions/methods/delete",
+      "endpoint": {
+        "method": "DELETE",
+        "uri": "/fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions/{permission_id}",
+        "request_type": "application/json"
+      },
+      "description": "Organization owners can use this endpoint to delete a permission for a fine-tuned model checkpoint.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/checkpoints/$FINE_TUNED_MODEL_CHECKPOINT/permissions/$PERMISSION_ID \\\n    -X DELETE \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"deleted\": true,\n  \"object\": \"checkpoint.permission\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/checkpoints/ft:gpt-4o-mini-2024-07-18:org:weather:B7R9VjQd/permissions/cp_zc4Q7MP6XxulcVzj4MZdwsAB \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"checkpoint.permission\",\n  \"id\": \"cp_zc4Q7MP6XxulcVzj4MZdwsAB\",\n  \"deleted\": true\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "List checkpoint permissions",
+      "source_url": "https://developers.openai.com/api/reference/resources/fine_tuning/subresources/checkpoints/subresources/permissions/methods/list",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions",
+        "request_type": "application/json"
+      },
+      "description": "Organization owners can use this endpoint to view all permissions for a fine-tuned model checkpoint.",
+      "parameters": {
+        "path": [],
+        "query": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/checkpoints/$FINE_TUNED_MODEL_CHECKPOINT/permissions \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"data\": [\n    {\n      \"id\": \"id\",\n      \"created_at\": 0,\n      \"object\": \"checkpoint.permission\",\n      \"project_id\": \"project_id\"\n    }\n  ],\n  \"has_more\": true,\n  \"object\": \"list\",\n  \"first_id\": \"first_id\",\n  \"last_id\": \"last_id\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/checkpoints/ft:gpt-4o-mini-2024-07-18:org:weather:B7R9VjQd/permissions \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"object\": \"checkpoint.permission\",\n      \"id\": \"cp_zc4Q7MP6XxulcVzj4MZdwsAB\",\n      \"created_at\": 1721764867,\n      \"project_id\": \"proj_abGMw1llN8IrBb6SvvY5A1iH\"\n    },\n    {\n      \"object\": \"checkpoint.permission\",\n      \"id\": \"cp_enQCFmOTGj3syEpYVhBRLTSy\",\n      \"created_at\": 1721764800,\n      \"project_id\": \"proj_iqGMw1llN8IrBb6SvvY5A1oF\"\n    },\n  ],\n  \"first_id\": \"cp_zc4Q7MP6XxulcVzj4MZdwsAB\",\n  \"last_id\": \"cp_enQCFmOTGj3syEpYVhBRLTSy\",\n  \"has_more\": false\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Cancel fine-tuning",
+      "source_url": "https://developers.openai.com/api/reference/resources/fine_tuning/subresources/jobs/methods/cancel",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/fine_tuning/jobs/{fine_tuning_job_id}/cancel",
+        "request_type": "application/json"
+      },
+      "description": "Immediately cancel a fine-tune job.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs/$FINE_TUNING_JOB_ID/cancel \\\n    -X POST \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"error\": {\n    \"code\": \"code\",\n    \"message\": \"message\",\n    \"param\": \"param\"\n  },\n  \"fine_tuned_model\": \"fine_tuned_model\",\n  \"finished_at\": 0,\n  \"hyperparameters\": {\n    \"batch_size\": \"auto\",\n    \"learning_rate_multiplier\": \"auto\",\n    \"n_epochs\": \"auto\"\n  },\n  \"model\": \"model\",\n  \"object\": \"fine_tuning.job\",\n  \"organization_id\": \"organization_id\",\n  \"result_files\": [\n    \"file-abc123\"\n  ],\n  \"seed\": 0,\n  \"status\": \"validating_files\",\n  \"trained_tokens\": 0,\n  \"training_file\": \"training_file\",\n  \"validation_file\": \"validation_file\",\n  \"estimated_finish\": 0,\n  \"integrations\": [\n    {\n      \"type\": \"wandb\",\n      \"wandb\": {\n        \"project\": \"my-wandb-project\",\n        \"entity\": \"entity\",\n        \"name\": \"name\",\n        \"tags\": [\n          \"custom-tag\"\n        ]\n      }\n    }\n  ],\n  \"metadata\": {\n    \"foo\": \"string\"\n  },\n  \"method\": {\n    \"type\": \"supervised\",\n    \"dpo\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"beta\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\"\n      }\n    },\n    \"reinforcement\": {\n      \"grader\": {\n        \"input\": \"input\",\n        \"name\": \"name\",\n        \"operation\": \"eq\",\n        \"reference\": \"reference\",\n        \"type\": \"string_check\"\n      },\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"compute_multiplier\": \"auto\",\n        \"eval_interval\": \"auto\",\n        \"eval_samples\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\",\n        \"reasoning_effort\": \"default\"\n      }\n    },\n    \"supervised\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\"\n      }\n    }\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl -X POST https://api.openai.com/v1/fine_tuning/jobs/ftjob-abc123/cancel \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"fine_tuning.job\",\n  \"id\": \"ftjob-abc123\",\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n  \"created_at\": 1721764800,\n  \"fine_tuned_model\": null,\n  \"organization_id\": \"org-123\",\n  \"result_files\": [],\n  \"status\": \"cancelled\",\n  \"validation_file\": \"file-abc123\",\n  \"training_file\": \"file-abc123\"\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Create fine-tuning job",
+      "source_url": "https://developers.openai.com/api/reference/resources/fine_tuning/subresources/jobs/methods/create",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/fine_tuning/jobs",
+        "request_type": "application/json"
+      },
+      "description": "Creates a fine-tuning job which begins the process of creating a new model from a given dataset. Response includes details of the enqueued job including job status and the name of the fine-tuned models once complete. [Learn more about fine-tuning](/docs/guides/model-optimization)",
+      "parameters": {
+        "body": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs \\\n    -H 'Content-Type: application/json' \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n    -d '{\n          \"model\": \"gpt-4o-mini\",\n          \"training_file\": \"file-abc123\",\n          \"seed\": 42,\n          \"validation_file\": \"file-abc123\"\n        }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"error\": {\n    \"code\": \"code\",\n    \"message\": \"message\",\n    \"param\": \"param\"\n  },\n  \"fine_tuned_model\": \"fine_tuned_model\",\n  \"finished_at\": 0,\n  \"hyperparameters\": {\n    \"batch_size\": \"auto\",\n    \"learning_rate_multiplier\": \"auto\",\n    \"n_epochs\": \"auto\"\n  },\n  \"model\": \"model\",\n  \"object\": \"fine_tuning.job\",\n  \"organization_id\": \"organization_id\",\n  \"result_files\": [\n    \"file-abc123\"\n  ],\n  \"seed\": 0,\n  \"status\": \"validating_files\",\n  \"trained_tokens\": 0,\n  \"training_file\": \"training_file\",\n  \"validation_file\": \"validation_file\",\n  \"estimated_finish\": 0,\n  \"integrations\": [\n    {\n      \"type\": \"wandb\",\n      \"wandb\": {\n        \"project\": \"my-wandb-project\",\n        \"entity\": \"entity\",\n        \"name\": \"name\",\n        \"tags\": [\n          \"custom-tag\"\n        ]\n      }\n    }\n  ],\n  \"metadata\": {\n    \"foo\": \"string\"\n  },\n  \"method\": {\n    \"type\": \"supervised\",\n    \"dpo\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"beta\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\"\n      }\n    },\n    \"reinforcement\": {\n      \"grader\": {\n        \"input\": \"input\",\n        \"name\": \"name\",\n        \"operation\": \"eq\",\n        \"reference\": \"reference\",\n        \"type\": \"string_check\"\n      },\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"compute_multiplier\": \"auto\",\n        \"eval_interval\": \"auto\",\n        \"eval_samples\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\",\n        \"reasoning_effort\": \"default\"\n      }\n    },\n    \"supervised\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\"\n      }\n    }\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "DPO",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"training_file\": \"file-abc123\",\n    \"validation_file\": \"file-abc123\",\n    \"model\": \"gpt-4o-mini\",\n    \"method\": {\n      \"type\": \"dpo\",\n      \"dpo\": {\n        \"hyperparameters\": {\n          \"beta\": 0.1\n        }\n      }\n    }\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"fine_tuning.job\",\n  \"id\": \"ftjob-abc\",\n  \"model\": \"gpt-4o-mini\",\n  \"created_at\": 1746130590,\n  \"fine_tuned_model\": null,\n  \"organization_id\": \"org-abc\",\n  \"result_files\": [],\n  \"status\": \"queued\",\n  \"validation_file\": \"file-123\",\n  \"training_file\": \"file-abc\",\n  \"method\": {\n    \"type\": \"dpo\",\n    \"dpo\": {\n      \"hyperparameters\": {\n        \"beta\": 0.1,\n        \"batch_size\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\"\n      }\n    }\n  },\n  \"metadata\": null,\n  \"error\": {\n    \"code\": null,\n    \"message\": null,\n    \"param\": null\n  },\n  \"finished_at\": null,\n  \"hyperparameters\": null,\n  \"seed\": 1036326793,\n  \"estimated_finish\": null,\n  \"integrations\": [],\n  \"user_provided_suffix\": null,\n  \"usage_metrics\": null,\n  \"shared_with_openai\": false\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"training_file\": \"file-BK7bzQj3FfZFXr7DbL6xJwfo\",\n    \"model\": \"gpt-4o-mini\"\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"fine_tuning.job\",\n  \"id\": \"ftjob-abc123\",\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n  \"created_at\": 1721764800,\n  \"fine_tuned_model\": null,\n  \"organization_id\": \"org-123\",\n  \"result_files\": [],\n  \"status\": \"queued\",\n  \"validation_file\": null,\n  \"training_file\": \"file-abc123\",\n  \"method\": {\n    \"type\": \"supervised\",\n    \"supervised\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\",\n      }\n    }\n  },\n  \"metadata\": null\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Epochs",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"training_file\": \"file-abc123\",\n    \"model\": \"gpt-4o-mini\",\n    \"method\": {\n      \"type\": \"supervised\",\n      \"supervised\": {\n        \"hyperparameters\": {\n          \"n_epochs\": 2\n        }\n      }\n    }\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"fine_tuning.job\",\n  \"id\": \"ftjob-abc123\",\n  \"model\": \"gpt-4o-mini\",\n  \"created_at\": 1721764800,\n  \"fine_tuned_model\": null,\n  \"organization_id\": \"org-123\",\n  \"result_files\": [],\n  \"status\": \"queued\",\n  \"validation_file\": null,\n  \"training_file\": \"file-abc123\",\n  \"hyperparameters\": {\n    \"batch_size\": \"auto\",\n    \"learning_rate_multiplier\": \"auto\",\n    \"n_epochs\": 2\n  },\n  \"method\": {\n    \"type\": \"supervised\",\n    \"supervised\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": 2\n      }\n    }\n  },\n  \"metadata\": null,\n  \"error\": {\n    \"code\": null,\n    \"message\": null,\n    \"param\": null\n  },\n  \"finished_at\": null,\n  \"seed\": 683058546,\n  \"trained_tokens\": null,\n  \"estimated_finish\": null,\n  \"integrations\": [],\n  \"user_provided_suffix\": null,\n  \"usage_metrics\": null,\n  \"shared_with_openai\": false\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Reinforcement",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"training_file\": \"file-abc\",\n    \"validation_file\": \"file-123\",\n    \"model\": \"o4-mini\",\n    \"method\": {\n      \"type\": \"reinforcement\",\n      \"reinforcement\": {\n        \"grader\": {\n          \"type\": \"string_check\",\n          \"name\": \"Example string check grader\",\n          \"input\": \"{{sample.output_text}}\",\n          \"reference\": \"{{item.label}}\",\n          \"operation\": \"eq\"\n        },\n        \"hyperparameters\": {\n          \"reasoning_effort\": \"medium\"\n        }\n      }\n    }\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"fine_tuning.job\",\n  \"id\": \"ftjob-abc123\",\n  \"model\": \"o4-mini\",\n  \"created_at\": 1721764800,\n  \"finished_at\": null,\n  \"fine_tuned_model\": null,\n  \"organization_id\": \"org-123\",\n  \"result_files\": [],\n  \"status\": \"validating_files\",\n  \"validation_file\": \"file-123\",\n  \"training_file\": \"file-abc\",\n  \"trained_tokens\": null,\n  \"error\": {},\n  \"user_provided_suffix\": null,\n  \"seed\": 950189191,\n  \"estimated_finish\": null,\n  \"integrations\": [],\n  \"method\": {\n    \"type\": \"reinforcement\",\n    \"reinforcement\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\",\n        \"eval_interval\": \"auto\",\n        \"eval_samples\": \"auto\",\n        \"compute_multiplier\": \"auto\",\n        \"reasoning_effort\": \"medium\"\n      },\n      \"grader\": {\n        \"type\": \"string_check\",\n        \"name\": \"Example string check grader\",\n        \"input\": \"{{sample.output_text}}\",\n        \"reference\": \"{{item.label}}\",\n        \"operation\": \"eq\"\n      },\n      \"response_format\": null\n    }\n  },\n  \"metadata\": null,\n  \"usage_metrics\": null,\n  \"shared_with_openai\": false\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Validation file",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"training_file\": \"file-abc123\",\n    \"validation_file\": \"file-abc123\",\n    \"model\": \"gpt-4o-mini\"\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"fine_tuning.job\",\n  \"id\": \"ftjob-abc123\",\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n  \"created_at\": 1721764800,\n  \"fine_tuned_model\": null,\n  \"organization_id\": \"org-123\",\n  \"result_files\": [],\n  \"status\": \"queued\",\n  \"validation_file\": \"file-abc123\",\n  \"training_file\": \"file-abc123\",\n  \"method\": {\n    \"type\": \"supervised\",\n    \"supervised\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\",\n      }\n    }\n  },\n  \"metadata\": null\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "W&B Integration",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs \\\n  -H \"Content-Type: application/json\" \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\" \\\n  -d '{\n    \"training_file\": \"file-abc123\",\n    \"validation_file\": \"file-abc123\",\n    \"model\": \"gpt-4o-mini\",\n    \"integrations\": [\n      {\n        \"type\": \"wandb\",\n        \"wandb\": {\n          \"project\": \"my-wandb-project\",\n          \"name\": \"ft-run-display-name\"\n          \"tags\": [\n            \"first-experiment\", \"v2\"\n          ]\n        }\n      }\n    ]\n  }'"
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"fine_tuning.job\",\n  \"id\": \"ftjob-abc123\",\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n  \"created_at\": 1721764800,\n  \"fine_tuned_model\": null,\n  \"organization_id\": \"org-123\",\n  \"result_files\": [],\n  \"status\": \"queued\",\n  \"validation_file\": \"file-abc123\",\n  \"training_file\": \"file-abc123\",\n  \"integrations\": [\n    {\n      \"type\": \"wandb\",\n      \"wandb\": {\n        \"project\": \"my-wandb-project\",\n        \"entity\": None,\n        \"run_id\": \"ftjob-abc123\"\n      }\n    }\n  ],\n  \"method\": {\n    \"type\": \"supervised\",\n    \"supervised\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\",\n      }\n    }\n  },\n  \"metadata\": null\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "List fine-tuning jobs",
+      "source_url": "https://developers.openai.com/api/reference/resources/fine_tuning/subresources/jobs/methods/list",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/fine_tuning/jobs",
+        "request_type": "application/json"
+      },
+      "description": "List your organization's fine-tuning jobs",
+      "parameters": {
+        "query": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"data\": [\n    {\n      \"id\": \"id\",\n      \"created_at\": 0,\n      \"error\": {\n        \"code\": \"code\",\n        \"message\": \"message\",\n        \"param\": \"param\"\n      },\n      \"fine_tuned_model\": \"fine_tuned_model\",\n      \"finished_at\": 0,\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\"\n      },\n      \"model\": \"model\",\n      \"object\": \"fine_tuning.job\",\n      \"organization_id\": \"organization_id\",\n      \"result_files\": [\n        \"file-abc123\"\n      ],\n      \"seed\": 0,\n      \"status\": \"validating_files\",\n      \"trained_tokens\": 0,\n      \"training_file\": \"training_file\",\n      \"validation_file\": \"validation_file\",\n      \"estimated_finish\": 0,\n      \"integrations\": [\n        {\n          \"type\": \"wandb\",\n          \"wandb\": {\n            \"project\": \"my-wandb-project\",\n            \"entity\": \"entity\",\n            \"name\": \"name\",\n            \"tags\": [\n              \"custom-tag\"\n            ]\n          }\n        }\n      ],\n      \"metadata\": {\n        \"foo\": \"string\"\n      },\n      \"method\": {\n        \"type\": \"supervised\",\n        \"dpo\": {\n          \"hyperparameters\": {\n            \"batch_size\": \"auto\",\n            \"beta\": \"auto\",\n            \"learning_rate_multiplier\": \"auto\",\n            \"n_epochs\": \"auto\"\n          }\n        },\n        \"reinforcement\": {\n          \"grader\": {\n            \"input\": \"input\",\n            \"name\": \"name\",\n            \"operation\": \"eq\",\n            \"reference\": \"reference\",\n            \"type\": \"string_check\"\n          },\n          \"hyperparameters\": {\n            \"batch_size\": \"auto\",\n            \"compute_multiplier\": \"auto\",\n            \"eval_interval\": \"auto\",\n            \"eval_samples\": \"auto\",\n            \"learning_rate_multiplier\": \"auto\",\n            \"n_epochs\": \"auto\",\n            \"reasoning_effort\": \"default\"\n          }\n        },\n        \"supervised\": {\n          \"hyperparameters\": {\n            \"batch_size\": \"auto\",\n            \"learning_rate_multiplier\": \"auto\",\n            \"n_epochs\": \"auto\"\n          }\n        }\n      }\n    }\n  ],\n  \"has_more\": true,\n  \"object\": \"list\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs?limit=2&metadata[key]=value \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"object\": \"fine_tuning.job\",\n      \"id\": \"ftjob-abc123\",\n      \"model\": \"gpt-4o-mini-2024-07-18\",\n      \"created_at\": 1721764800,\n      \"fine_tuned_model\": null,\n      \"organization_id\": \"org-123\",\n      \"result_files\": [],\n      \"status\": \"queued\",\n      \"validation_file\": null,\n      \"training_file\": \"file-abc123\",\n      \"metadata\": {\n        \"key\": \"value\"\n      }\n    },\n    { ... },\n    { ... }\n  ], \"has_more\": true\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "List fine-tuning events",
+      "source_url": "https://developers.openai.com/api/reference/resources/fine_tuning/subresources/jobs/methods/list_events",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/fine_tuning/jobs/{fine_tuning_job_id}/events",
+        "request_type": "application/json"
+      },
+      "description": "Get status updates for a fine-tuning job.",
+      "parameters": {
+        "path": [],
+        "query": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs/$FINE_TUNING_JOB_ID/events \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"data\": [\n    {\n      \"id\": \"id\",\n      \"created_at\": 0,\n      \"level\": \"info\",\n      \"message\": \"message\",\n      \"object\": \"fine_tuning.job.event\",\n      \"data\": {},\n      \"type\": \"message\"\n    }\n  ],\n  \"has_more\": true,\n  \"object\": \"list\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs/ftjob-abc123/events \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"object\": \"fine_tuning.job.event\",\n      \"id\": \"ft-event-ddTJfwuMVpfLXseO0Am0Gqjm\",\n      \"created_at\": 1721764800,\n      \"level\": \"info\",\n      \"message\": \"Fine tuning job successfully completed\",\n      \"data\": null,\n      \"type\": \"message\"\n    },\n    {\n      \"object\": \"fine_tuning.job.event\",\n      \"id\": \"ft-event-tyiGuB72evQncpH87xe505Sv\",\n      \"created_at\": 1721764800,\n      \"level\": \"info\",\n      \"message\": \"New fine-tuned model created: ft:gpt-4o-mini:openai::7p4lURel\",\n      \"data\": null,\n      \"type\": \"message\"\n    }\n  ],\n  \"has_more\": true\n}"
+        }
+      ],
+      "events_or_schemas": [
+        "List fine-tuning events"
+      ]
+    },
+    {
+      "title": "Pause fine-tuning",
+      "source_url": "https://developers.openai.com/api/reference/resources/fine_tuning/subresources/jobs/methods/pause",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/fine_tuning/jobs/{fine_tuning_job_id}/pause",
+        "request_type": "application/json"
+      },
+      "description": "Pause a fine-tune job.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs/$FINE_TUNING_JOB_ID/pause \\\n    -X POST \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"error\": {\n    \"code\": \"code\",\n    \"message\": \"message\",\n    \"param\": \"param\"\n  },\n  \"fine_tuned_model\": \"fine_tuned_model\",\n  \"finished_at\": 0,\n  \"hyperparameters\": {\n    \"batch_size\": \"auto\",\n    \"learning_rate_multiplier\": \"auto\",\n    \"n_epochs\": \"auto\"\n  },\n  \"model\": \"model\",\n  \"object\": \"fine_tuning.job\",\n  \"organization_id\": \"organization_id\",\n  \"result_files\": [\n    \"file-abc123\"\n  ],\n  \"seed\": 0,\n  \"status\": \"validating_files\",\n  \"trained_tokens\": 0,\n  \"training_file\": \"training_file\",\n  \"validation_file\": \"validation_file\",\n  \"estimated_finish\": 0,\n  \"integrations\": [\n    {\n      \"type\": \"wandb\",\n      \"wandb\": {\n        \"project\": \"my-wandb-project\",\n        \"entity\": \"entity\",\n        \"name\": \"name\",\n        \"tags\": [\n          \"custom-tag\"\n        ]\n      }\n    }\n  ],\n  \"metadata\": {\n    \"foo\": \"string\"\n  },\n  \"method\": {\n    \"type\": \"supervised\",\n    \"dpo\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"beta\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\"\n      }\n    },\n    \"reinforcement\": {\n      \"grader\": {\n        \"input\": \"input\",\n        \"name\": \"name\",\n        \"operation\": \"eq\",\n        \"reference\": \"reference\",\n        \"type\": \"string_check\"\n      },\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"compute_multiplier\": \"auto\",\n        \"eval_interval\": \"auto\",\n        \"eval_samples\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\",\n        \"reasoning_effort\": \"default\"\n      }\n    },\n    \"supervised\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\"\n      }\n    }\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl -X POST https://api.openai.com/v1/fine_tuning/jobs/ftjob-abc123/pause \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"fine_tuning.job\",\n  \"id\": \"ftjob-abc123\",\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n  \"created_at\": 1721764800,\n  \"fine_tuned_model\": null,\n  \"organization_id\": \"org-123\",\n  \"result_files\": [],\n  \"status\": \"paused\",\n  \"validation_file\": \"file-abc123\",\n  \"training_file\": \"file-abc123\"\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Resume fine-tuning",
+      "source_url": "https://developers.openai.com/api/reference/resources/fine_tuning/subresources/jobs/methods/resume",
+      "endpoint": {
+        "method": "POST",
+        "uri": "/fine_tuning/jobs/{fine_tuning_job_id}/resume",
+        "request_type": "application/json"
+      },
+      "description": "Resume a fine-tune job.",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs/$FINE_TUNING_JOB_ID/resume \\\n    -X POST \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"error\": {\n    \"code\": \"code\",\n    \"message\": \"message\",\n    \"param\": \"param\"\n  },\n  \"fine_tuned_model\": \"fine_tuned_model\",\n  \"finished_at\": 0,\n  \"hyperparameters\": {\n    \"batch_size\": \"auto\",\n    \"learning_rate_multiplier\": \"auto\",\n    \"n_epochs\": \"auto\"\n  },\n  \"model\": \"model\",\n  \"object\": \"fine_tuning.job\",\n  \"organization_id\": \"organization_id\",\n  \"result_files\": [\n    \"file-abc123\"\n  ],\n  \"seed\": 0,\n  \"status\": \"validating_files\",\n  \"trained_tokens\": 0,\n  \"training_file\": \"training_file\",\n  \"validation_file\": \"validation_file\",\n  \"estimated_finish\": 0,\n  \"integrations\": [\n    {\n      \"type\": \"wandb\",\n      \"wandb\": {\n        \"project\": \"my-wandb-project\",\n        \"entity\": \"entity\",\n        \"name\": \"name\",\n        \"tags\": [\n          \"custom-tag\"\n        ]\n      }\n    }\n  ],\n  \"metadata\": {\n    \"foo\": \"string\"\n  },\n  \"method\": {\n    \"type\": \"supervised\",\n    \"dpo\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"beta\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\"\n      }\n    },\n    \"reinforcement\": {\n      \"grader\": {\n        \"input\": \"input\",\n        \"name\": \"name\",\n        \"operation\": \"eq\",\n        \"reference\": \"reference\",\n        \"type\": \"string_check\"\n      },\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"compute_multiplier\": \"auto\",\n        \"eval_interval\": \"auto\",\n        \"eval_samples\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\",\n        \"reasoning_effort\": \"default\"\n      }\n    },\n    \"supervised\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\"\n      }\n    }\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl -X POST https://api.openai.com/v1/fine_tuning/jobs/ftjob-abc123/resume \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"fine_tuning.job\",\n  \"id\": \"ftjob-abc123\",\n  \"model\": \"gpt-4o-mini-2024-07-18\",\n  \"created_at\": 1721764800,\n  \"fine_tuned_model\": null,\n  \"organization_id\": \"org-123\",\n  \"result_files\": [],\n  \"status\": \"queued\",\n  \"validation_file\": \"file-abc123\",\n  \"training_file\": \"file-abc123\"\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Retrieve fine-tuning job",
+      "source_url": "https://developers.openai.com/api/reference/resources/fine_tuning/subresources/jobs/methods/retrieve",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/fine_tuning/jobs/{fine_tuning_job_id}",
+        "request_type": "application/json"
+      },
+      "description": "Get info about a fine-tuning job. [Learn more about fine-tuning](/docs/guides/model-optimization)",
+      "parameters": {
+        "path": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs/$FINE_TUNING_JOB_ID \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"id\": \"id\",\n  \"created_at\": 0,\n  \"error\": {\n    \"code\": \"code\",\n    \"message\": \"message\",\n    \"param\": \"param\"\n  },\n  \"fine_tuned_model\": \"fine_tuned_model\",\n  \"finished_at\": 0,\n  \"hyperparameters\": {\n    \"batch_size\": \"auto\",\n    \"learning_rate_multiplier\": \"auto\",\n    \"n_epochs\": \"auto\"\n  },\n  \"model\": \"model\",\n  \"object\": \"fine_tuning.job\",\n  \"organization_id\": \"organization_id\",\n  \"result_files\": [\n    \"file-abc123\"\n  ],\n  \"seed\": 0,\n  \"status\": \"validating_files\",\n  \"trained_tokens\": 0,\n  \"training_file\": \"training_file\",\n  \"validation_file\": \"validation_file\",\n  \"estimated_finish\": 0,\n  \"integrations\": [\n    {\n      \"type\": \"wandb\",\n      \"wandb\": {\n        \"project\": \"my-wandb-project\",\n        \"entity\": \"entity\",\n        \"name\": \"name\",\n        \"tags\": [\n          \"custom-tag\"\n        ]\n      }\n    }\n  ],\n  \"metadata\": {\n    \"foo\": \"string\"\n  },\n  \"method\": {\n    \"type\": \"supervised\",\n    \"dpo\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"beta\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\"\n      }\n    },\n    \"reinforcement\": {\n      \"grader\": {\n        \"input\": \"input\",\n        \"name\": \"name\",\n        \"operation\": \"eq\",\n        \"reference\": \"reference\",\n        \"type\": \"string_check\"\n      },\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"compute_multiplier\": \"auto\",\n        \"eval_interval\": \"auto\",\n        \"eval_samples\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\",\n        \"reasoning_effort\": \"default\"\n      }\n    },\n    \"supervised\": {\n      \"hyperparameters\": {\n        \"batch_size\": \"auto\",\n        \"learning_rate_multiplier\": \"auto\",\n        \"n_epochs\": \"auto\"\n      }\n    }\n  }\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs/ft-AF1WoRqd3aJAHsqc9NY7iL8F \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"fine_tuning.job\",\n  \"id\": \"ftjob-abc123\",\n  \"model\": \"davinci-002\",\n  \"created_at\": 1692661014,\n  \"finished_at\": 1692661190,\n  \"fine_tuned_model\": \"ft:davinci-002:my-org:custom_suffix:7q8mpxmy\",\n  \"organization_id\": \"org-123\",\n  \"result_files\": [\n      \"file-abc123\"\n  ],\n  \"status\": \"succeeded\",\n  \"validation_file\": null,\n  \"training_file\": \"file-abc123\",\n  \"hyperparameters\": {\n      \"n_epochs\": 4,\n      \"batch_size\": 1,\n      \"learning_rate_multiplier\": 1.0\n  },\n  \"trained_tokens\": 5768,\n  \"integrations\": [],\n  \"seed\": 0,\n  \"estimated_finish\": 0,\n  \"method\": {\n    \"type\": \"supervised\",\n    \"supervised\": {\n      \"hyperparameters\": {\n        \"n_epochs\": 4,\n        \"batch_size\": 1,\n        \"learning_rate_multiplier\": 1.0\n      }\n    }\n  }\n}"
+        }
+      ],
+      "events_or_schemas": []
+    },
+    {
+      "title": "List fine-tuning checkpoints",
+      "source_url": "https://developers.openai.com/api/reference/resources/fine_tuning/subresources/jobs/subresources/checkpoints/methods/list",
+      "endpoint": {
+        "method": "GET",
+        "uri": "/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints",
+        "request_type": "application/json"
+      },
+      "description": "List checkpoints for a fine-tuning job.",
+      "parameters": {
+        "path": [],
+        "query": []
+      },
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs/$FINE_TUNING_JOB_ID/checkpoints \\\n    -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"data\": [\n    {\n      \"id\": \"id\",\n      \"created_at\": 0,\n      \"fine_tuned_model_checkpoint\": \"fine_tuned_model_checkpoint\",\n      \"fine_tuning_job_id\": \"fine_tuning_job_id\",\n      \"metrics\": {\n        \"full_valid_loss\": 0,\n        \"full_valid_mean_token_accuracy\": 0,\n        \"step\": 0,\n        \"train_loss\": 0,\n        \"train_mean_token_accuracy\": 0,\n        \"valid_loss\": 0,\n        \"valid_mean_token_accuracy\": 0\n      },\n      \"object\": \"fine_tuning.job.checkpoint\",\n      \"step_number\": 0\n    }\n  ],\n  \"has_more\": true,\n  \"object\": \"list\",\n  \"first_id\": \"first_id\",\n  \"last_id\": \"last_id\"\n}"
+        },
+        {
+          "language": "http",
+          "purpose": "request",
+          "context": "Example",
+          "code": "curl https://api.openai.com/v1/fine_tuning/jobs/ftjob-abc123/checkpoints \\\n  -H \"Authorization: Bearer $OPENAI_API_KEY\""
+        },
+        {
+          "language": "json",
+          "purpose": "response",
+          "context": "Response",
+          "code": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"object\": \"fine_tuning.job.checkpoint\",\n      \"id\": \"ftckpt_zc4Q7MP6XxulcVzj4MZdwsAB\",\n      \"created_at\": 1721764867,\n      \"fine_tuned_model_checkpoint\": \"ft:gpt-4o-mini-2024-07-18:my-org:custom-suffix:96olL566:ckpt-step-2000\",\n      \"metrics\": {\n        \"full_valid_loss\": 0.134,\n        \"full_valid_mean_token_accuracy\": 0.874\n      },\n      \"fine_tuning_job_id\": \"ftjob-abc123\",\n      \"step_number\": 2000\n    },\n    {\n      \"object\": \"fine_tuning.job.checkpoint\",\n      \"id\": \"ftckpt_enQCFmOTGj3syEpYVhBRLTSy\",\n      \"created_at\": 1721764800,\n      \"fine_tuned_model_checkpoint\": \"ft:gpt-4o-mini-2024-07-18:my-org:custom-suffix:7q8mpxmy:ckpt-step-1000\",\n      \"metrics\": {\n        \"full_valid_loss\": 0.167,\n        \"full_valid_mean_token_accuracy\": 0.781\n      },\n      \"fine_tuning_job_id\": \"ftjob-abc123\",\n      \"step_number\": 1000\n    }\n  ],\n  \"first_id\": \"ftckpt_zc4Q7MP6XxulcVzj4MZdwsAB\",\n  \"last_id\": \"ftckpt_enQCFmOTGj3syEpYVhBRLTSy\",\n  \"has_more\": true\n}"
+        }
+      ],
+      "events_or_schemas": []
+    }
+  ]
+}

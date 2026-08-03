@@ -1,0 +1,220 @@
+{
+  "category": "other",
+  "count": 18,
+  "documents": [
+    {
+      "title": "Ads",
+      "source_url": "https://developers.openai.com/ads",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "> Create ads in ChatGPT and measure website conversions with the Measurement Pixel, authentication, campaigns, product feeds, ad groups, ads, uploads, and insights. Use this as a compact map of the Ads docs. Each page has a Markdown twin at `/ads/<slug>.md`.",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": [
+        "Supported Events"
+      ]
+    },
+    {
+      "title": "OpenAI API reference",
+      "source_url": "https://developers.openai.com/api/reference",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "> Reference documentation for OpenAI API endpoint groups and methods.",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Blog",
+      "source_url": "https://developers.openai.com/blog",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "> Developer blog posts and product updates. Each post has a Markdown twin at `/blog/<slug>.md`.",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "ChatGPT | OpenAI Developers",
+      "source_url": "https://developers.openai.com/chatgpt",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "For the complete documentation index, see . Markdown versions of documentation pages are available by appending to the page URL. Plugins Workspace Agents Commerce Ads Build for ChatGPT Apps and experiences developers can build for ChatGPT users. PLUGINS Build plugins for ChatGPT and Codex Package skills and MCP servers, with optional UI when a workflow needs it. Explore WORKSPACE AGENTS Trigger published workspace agents Programmatically kick off published ChatGPT workspace agents from backend systems and automations. Explore AGENTIC COMMERCE PROTOCOL Build commerce flows within ChatGPT Power guided shopping flows with the Agentic Commerce Protocol and connect merchants to ChatGPT users. Explore ADS Publish and measure ads in ChatGPT Manage campaigns, ad groups, creatives, uploads, and insights with the Ads API. Explore Resources Learn about developer mode ChatGPT developer mode provides full Model Context Protocol support for all tools, both read and write, in ChatGPT Plus and Pro. Read the docs ChatGPT Cookbook Explore hands-on guides to build custom GPT actions to integrate with third-party tools and more. Browse guides Ask AI",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Agentic Commerce",
+      "source_url": "https://developers.openai.com/commerce",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "> Build commerce flows for ChatGPT, including agentic checkout, delegated payment, and product feeds. Use this as a compact map of the commerce specs and guides. Each page has a Markdown twin at `/commerce/<slug>.md`.",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Community | OpenAI Developers",
+      "source_url": "https://developers.openai.com/community",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "For the complete documentation index, see . Markdown versions of documentation pages are available by appending to the page URL. Showcase Blog Cookbook Learn Community Community Programs Codex Ambassadors Codex for Students Codex for Open Source OpenAI for Startups Events Meetups Spaces Developer Forum Discord Reddit X Community Join a global community of developers building with OpenAI. Meet other builders, get support, share what you’re making, and find programs that help you go further. 1M+ Developer Forum members 3K+ Open-source maintainers 302+ Community events 149 Global ambassadors ∞ Swag shipped Video by Andy T on X . Choose your path Find the right place to connect, contribute, get support, or grow with the OpenAI developer community. Meet builders Find upcoming meetups, workshops, and hackathons hosted by builders around the world. Browse meetups Join a program Explore Codex Ambassadors, student credits, and open-source support. See programs Share what you built Submit your project, demo, or workflow to the OpenAI developer showcase. Submit a project Get community support Ask questions, compare implementation patterns, and learn from other developers in the Developer Forum. Visit the Developer Forum (opens in a new tab) Programs Explore programs for community organizers, students, open-source maintainers, and startups building with OpenAI. Codex Ambassadors Lead local workshops, host builder meetups, and help developers learn together in your city. Codex for Students Verified university students in the United States and Canada can claim $100 in ChatGPT credits to use in Codex. Codex for Open Source Support for maintainers using Codex and OpenAI APIs in public projects. OpenAI for Startups Resources and support for startups building and scaling with OpenAI. Join our next meetup Meet builders IRL, trade ideas, and learn how others are shipping with OpenAI. UPCOMING AUG 6, 2026 Community Meetup Dhaka, Bangladesh Aug 6, 2026 Hosted by MD Shahriyar Al Mustakim Mitul UPCOMING AUG 13, 2026 Community Meetup Perth, Australia Aug 13, 2026 Hosted by Jia Keatnuxsuo View all meetups What builders are making and sharing Projects, workflows, demos, and ideas from the Codex and broader OpenAI community. Riley Brown @rileybrown Ambition is the best benchmark... GPT 5.5 is still the best. With computer use, you can be even more ambitious. Sometimes when you think “there’s no way AI can do that”.... Just try it. https://t.co/RPJ2k33Kv4 May 26, 2026 Omar Shahine @OmarShahine Codex is phenomenal at creating Swift iOS apps. I just single shotted an app using goals and got 95% of the way there. Iterating is super fast too. Impressed. Much better than Claude Code. May 9, 2026 Bindu Reddy @bindureddy Finally moved 90% of our hard coding workloads over to Codex For some reason Opus seemed to have gotten less performant over time 🤷‍♀️ It’s also refusing more requests Looking forward to even more capable and efficient Codex Apr 11, 2026 am.will @LLMJunky The Codex app server was such a brilliant stroke of foresight that really doesn't get enough love Not only are you allowed to use your chatgpt account with any harness, but you can build your own apps directly on top of theirs. They just make building on and with codex such a great experience Apr 4, 2026 MJ @mjackson If you haven't tried Codex yet, you're missing something BIG. Mar 13, 2026 Derya Unutmaz, MD @DeryaTR_ My new Sunday morning routine: 1. Get coffee 2. Check GPT-5.4 projects on the Codex App, continue & start new ones 4. Launch ChatGPT 5.4 Pro for fresh brainstorming sessions 5. Think/learn how to use the 90% of AI capabilities I have yet to explore 6. Drink more coffee Mar 8, 2026 ashe @ashebytes given the interest, I productized my video hub! made with codex 5.3 🖤 linked below Mar 5, 2026 Mitchell Hashimoto @mitchellh Ahhhh, Codex 5.3 (xhigh) with a vague prompt just solved a bug that I and others have been struggling to fix for over 6 months. Other reasoning levels with Codex failed, Opus 4.6 failed. Cost $4.14 and 45 minutes. Mar 5, 2026 Mitchell Hashimoto @mitchellh I know this is pretty well established at this point, but Codex 5.3 is a much more effective model than Opus 4.6. I went back and forth on both for a bit, but haven't touched Opus at all now for a full week. First model to get me off of Opus... ever. Good job Codex team. Feb 25, 2026 Dennis Hannusch @DennisHannusch I started daily driving Codex with gpt-5.3-codex this week.. it's reaaally good. I've gotten used to complex workflows and context management, but Codex just does what I ask. I keep expecting quality to drop deep into a session, but it doesn't. @OpenAIDevs ya'll cooked! Feb 11, 2026 Christopher Ehrlich @ccccjjjjeeee It actually worked! For the past couple of days I've been throwing 5.3-codex at the C codebase for SimCity (1989) to port it to TypeScript. Not reading any code, very little steering. Today I have SimCity running in the browser. I can't believe this new world we live in. Feb 10, 2026 Guillermo Rauch @rauchg 🆕 GPT 5.3 Codex (xhigh) achieves 90% on Next.js evals out of the box, \"frame-mogging\" the competition so to speak: Feb 9, 2026 Flavio Adamo @flavioAd Codex app is the most 'non-native' app that somehow feels more native than native apps Feb 2, 2026 Paul Solt @PaulSolt The Codex app feels like the missing IDE layer for the Codex CLI. One-click to open Xcode, run iOS/macOS apps, review diffs, and manage agents. Hard to go back after this. Feb 2, 2026 Nate Berkopec @nateberkopec I have not seen a better code review agent that Codex 5.2 xhigh /review. Jan 27, 2026 Rudrank Riyam @rudrank I spent 3 hours debugging and running all kinds of tests with Opus 4.5 for the discrepancy between CLI vs iOS app embeddings and the retrieval 5.2 Codex xHigh did \"thinking\" for like 20 minutes and casually one-shot it Jan 26, 2026 Rudrank Riyam @rudrank Codex models is something you can just \"trust\" more than others I was in car and saw an issue created, and I let a cloud agent work on it for ~17 minutes Jan 25, 2026 Xeophon @xeophon Longest Codex run achieved with 8 hours 👀 Jan 18, 2026 Peter Steinberger 🦞 @steipete codex is so good. point at messy PR, sizzles out the 3 fixes out of a big commit, cleanly separates it. done. also idk why it always says full gate but i fully adopted this. Jan 13, 2026 Aaron Francis @aarondfrancis Codex just spent like 6 hours debugging CI while I played outside with my kids Jan 2, 2026 Numman Ali @nummanali Bloody hell, I'll say this GPT 5.2 Codex Extra High is a methodical beast It's updating the OpenCode OpenAI Codex OAuth plugin Literally not leaving any stone unturned This is the first model that feels like it's building for itself ie leaving the door open for future work Dec 19, 2025 DHH @dhh For complicated agent work, it's amazing how much GPT5.5 has improved. I found 5.2 to be very far behind Opus. Now using Opus 4.7 after 5.5 feels like a big step backwards. Gotta love this level of competion! Strong comeback for OpenAI. May 22, 2026 Aman @Amank1412 OPENAI INTEGRATED GPT-IMAGE-2 INTO CODEX. Developers can generate and swap game textures in real time using natural language no restart needed. In a 2D zombie tower defense demo, environments update in seconds. Huge boost for indie game art iteration. pic.twitter.com/CcADbOUlLZ Apr 25, 2026 Bindu Reddy @bindureddy Our ops team has switched to GPT 5.4 for ops and coding tasks It’s just way better for ops, SRE and cloud configuration issues Likely because it’s just a lot more aware of these knowledge bases Apr 8, 2026 David Marcus @davidmarcus It's wild that every time you run a Codex code review from Claude Code, it finds critical issues. Not 95% of the times, 100%. Mar 28, 2026 Garry Tan @garrytan OK Codex is GOAT at finding bugs and finding plan errors Mar 19, 2026 Victor Mota @vimota OpenAI got me with the 2x increased usage limits on the Codex desktop app. It's a really nice experience. Super smooth - claude code app is so laggy. And the handoff experience is amazing. > I started a session locally on codex app > had to leave so I handed it off to codex cloud (with 2 attempts) > got back to my computer, compared both attempts, picked the better one, synced it back to my computer > continued to iterate on it locally Mar 13, 2026 Evan You @youyuxi Did a full repo internal / public docs vs. source code alignment check + update - GPT 5.4 did a significantly better job than Opus 4.6. Note this is not a coding task but more like research / documentation. Same prompt but GPT 5.4's proposed revisions captured my intent much... Mar 8, 2026 John Jung @johnjjung Codex 5.3 xhigh spark has been phenomenal - you’re able to stay in a state of flow building. The focus and power of hitting problem after problem is incredible. Mar 5, 2026 Theo - t3.gg @theo Almost every verifiable problem I've been sent so far has been solved by 5.3 Codex. Please make sure 5.3 Codex can't solve your problem before you submit it to me. I'm a youtuber not a prompt box. Mar 2, 2026 Mariusz Kurman @mkurman88 Those who wrote \"Try Codex\" when I was hyping CC were right. Codex 5.3 is another level. It delivers so much with such high quality - I'm literally shocked. 5.2 was a mess; 5.3 is in another league. Feb 24, 2026 ORO AI ✈️ ETHDenver @getoro_xyz OpenAI rolls out GPT-5.3-Codex with faster AI coding and measurable efficiency gains. Look at the chart. That Kurzweil Curve doesn't happen by accident. It's the result of a new data diet plan, shifting toward real-world and private workflow data. Feb 11, 2026 Dan Shipper 📧 @danshipper BREAKING: At the Super Bowl halftime show, Bad Bunny says he prefers Opus 4.6 for vibe coding but turns to 5.3 Codex for gnarly engineering problems. \"Opus pa'' vibear, Codex pa'' lo heavy\" - he said Feb 9, 2026 Angel ❄️ @Angaisb_ GPT-5.3 Codex is actually pretty insane with Three.js This Minecraft clone works smoothly and it didn't take too long to make I also tried Opus 4.6, but for some reason it got stuck Feb 5, 2026 Angel ❄️ @Angaisb_ GPT-5.3-Codex with image gen skill (NBP) I'm loving this model so much. This is one-shot Video Feb 5, 2026 Pallav Agarwal @pallavmac Ok the new Codex app is incredible. You can build and run an Xcode project from Codex directly so you can vibecode iOS apps without opening Xcode! Feb 2, 2026 Kristen Anderson @FintechKristen Because codex is the best for development. Everyone knows this. We aren’t using the other coding tools anymore. Jan 28, 2026 Anthony @kr0der Codex v0.91.0 has plan mode, and it's really thorough. this one plan took 27% of its context. if you've used Codex you know that 27% is a lot which means it's thoroughly searching before creating plans - no rushing/taking shortcuts. try it out by adding 'collaboration_modes =… Jan 26, 2026 Thomas Ricouard @Dimillian Yes. At this point, I don't care about speed anymore. Speed is solved by running multiple tasks in parallel. What I want is an agent that can think out of the box like a human, and Codex does just that. Jan 26, 2026 Henry @henrytdowling Codex is *really good* for coding, one day people will realize Jan 23, 2026 Gavin Nelson @Gavmn Favorite recent use of Codex: 💆🏻‍♂️ Jan 20, 2026 Ian Nuttall @iannuttall One thing I have noticed with Codex CLI and 5.2 Codex high model recently I never worry about the context window or compaction any more It just does it, really fast, and the agent carries on like nothing happened, no loss in quality Jan 9, 2026 AK @ak_cozmo codex hitting that inflection point where it's better at remembering API docs than i am. the shift from \"AI suggests code\" to \"AI owns the implementation layer\" is wild most underrated change: junior devs can now ship senior-level infra. distribution of execution ability is… Dec 20, 2025 Ask AI",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Cookbook",
+      "source_url": "https://developers.openai.com/cookbook",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "> Recipes and examples from the OpenAI developer cookbook. Each entry has a Markdown twin at `/cookbook/<path>.md`.",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Assistants File Search | OpenAI API",
+      "source_url": "https://developers.openai.com/docs/assistants/tools/file-search",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "For the complete documentation index, see . Markdown versions of documentation pages are available by appending to the page URL. Overview Models Agents Tools Voice & Audio Production API reference Home Get started Quickstart Using GPT-5.6 Key concepts Core concepts Responses API Conversation state Background mode Streaming WebSocket mode Multi-agent Webhooks File inputs Compaction Counting tokens SDKs and CLI OpenAI SDK OpenAI CLI Resources Changelog Deprecations Supported countries OpenAI Crawlers Terms and policies Legacy APIs Agent Builder Evals Fine-tuning Assistants API Migration guide Deep dive Tools Assistants File Search Copy Page After achieving feature parity in the Responses API, we've deprecated the Assistants API. It will shut down on August 26, 2026. Follow the migration guide to update your integration. Learn more. Overview File Search augments the Assistant with knowledge from outside its model, such as proprietary product information or documents provided by your users. OpenAI automatically parses and chunks your documents, creates and stores the embeddings, and use both vector and keyword search to retrieve relevant content to answer user queries. Quickstart In this example, we’ll create an assistant that can help answer questions about companies’ financial statements. Step 1: Create a new Assistant with File Search Enabled Create a new assistant with file_search enabled in the tools parameter of the Assistant. python 1 2 3 4 5 6 7 8 9 10 from openai import OpenAI client = OpenAI() assistant = client.beta.assistants.create( name=\"Financial Analyst Assistant\", instructions=\"You are an expert financial analyst. Use you knowledge base to answer questions about audited financial statements.\", model=\"gpt-4o\", tools=[{\"type\": \"file_search\"}], ) Once the file_search tool is enabled, the model decides when to retrieve content based on user messages. Step 2: Upload files and add them to a Vector Store To access your files, the file_search tool uses the Vector Store object. Upload your files and create a Vector Store to contain them. Once the Vector Store is created, you should poll its status until all files are out of the in_progress state to ensure that all content has finished processing. The SDK provides helpers to uploading and polling in one shot. python 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Learn",
+      "source_url": "https://developers.openai.com/learn",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "> Curated docs, videos, and demo apps for OpenAI developers. Docs pages are available at `/learn/<slug>.md`. Curated resources are listed here with their canonical destination URLs.",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "OpenAI Developers",
+      "source_url": "https://developers.openai.com/llms.txt",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "> Complete documentation hub for OpenAI API, Ads, Plugins, Workspace Agents, Codex, Agentic Commerce, the developer blog, Cookbook, learning resources, and learning tracks. Each section links to Markdown twins under the product path (e.g., `/plugins/<slug>.md`).",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": [
+        "Ads — Supported Events"
+      ]
+    },
+    {
+      "title": "Plugins",
+      "source_url": "https://developers.openai.com/plugins",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "> Build and publish plugins with skills, MCP servers, and optional UI. Use this as a lightweight map for AI tools. Each Plugins page has a Markdown twin at `/plugins/<slug>.md` for direct ingestion.",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Learn | OpenAI Developers",
+      "source_url": "https://developers.openai.com/resources",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "For the complete documentation index, see . Markdown versions of documentation pages are available by appending to the page URL. Showcase Blog Cookbook Learn Community Get inspired and build Agents Voice Fine-tuning Customer Service Learning tracks Building agents Learn how to build agents: Foundational concepts to practical implementation AI app development: Concept to production Build, deploy, and optimize AI apps. Model optimization Fine-tune, distill, and optimize models for the best performance and cost. Demo apps View all ChatKit starter app Integrate ChatKit with an Agent Builder workflow in your application. Code Plugin UI examples Example UI and corresponding MCP servers for ChatGPT plugins. Code Responses starter app Starter application demonstrating OpenAI Responses API with tools. Code Videos View all Codex for (almost) everything See the latest Codex app updates for working across more of the software development lifecycle. Video Codex code review Walkthrough of how Codex drives end-to-end pull request reviews with the new onboarding flow. Video Introducing the Codex app See the Codex app in action and how it helps you build and ship faster. Video Ask AI",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Showcase | OpenAI Developers",
+      "source_url": "https://developers.openai.com/showcase",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "For the complete documentation index, see . Markdown versions of documentation pages are available by appending to the page URL. Showcase Blog Cookbook Learn Community Showcase Explore demos built with OpenAI Glass Towers MiniTown Field Day Material Lab A minimalist 3D balancing game built from translucent forms. A tiny living town where zones grow, residents commute, and warm lights come on at night. A cheerful picnic-supply storefront with a build-your-own basket. A real-time studio for shaping light, surface, and form. All projects Built with Codex API examples Internal apps Filters OpenAI Community Model Type Use case Tech stack Asterism Build constellations from a finite deck of named stars and illuminate the... Codex Pet Arena A fast, colorful platform arena where animated pets collect tokens, grow... Glass Towers A minimalist 3D balancing game built from translucent forms. Phantasy Codex Adventure A persistent retro action RPG with procedural worlds, classes, bosses, and... MiniTown A tiny living town where zones grow, residents commute, and warm lights... Backroom Center: Corrupted An infinite data-center labyrinth seen through a deteriorating VHS camcorder. Tiny Rails Rollercoaster A nostalgic miniature coaster with eight routes and hands-on driving modes. Material Lab A real-time studio for shaping light, surface, and form. Field Day A cheerful picnic-supply storefront with a build-your-own basket. Kiln A contemporary ceramics storefront with an interactive glazed cup. Biome Lab A living procedural terrarium with adjustable ecosystems. Scent Cartography A botanical fragrance storefront with a build-your-own scent atelier. Paper Glider An arcade glider through sunlit, procedurally generated rooms. Terrain Mixer A procedural landscape generator with synchronized analytical views. Waveform Studio A local-first tool for turning audio into expressive visual waveforms. Time to Fly Cosmic logic puzzle game about orbital rotation. Neon FPS Neon first-person shooter game with arcade-style combat. Brick Platformer Browser platformer game with brick rooftops and side-scrolling action. Arcade Bar Landing Page Neon arcade and pinball bar landing page with promotional sections. Cold Brew House Landing Page Cold brew coffee landing page with minimalist product storytelling. Watchmaker Landing Page Haute horlogerie landing page for a luxury watchmaker. Theme Park Builder Mini-game where you can build your own theme park. Golden Gate Experience Cinematic experience where you can fly around the Golden Gate Bridge. Procedural City Generator Browser-based 3D city generator. Turn-based RPG A browser demo that turns GPT-5.4 into a turn-based role-playing game with... Real estate data viz App to get insights on the Paris real-estate market using the French Gov... E-commerce website Retail storefront demo with product browsing and shopping flows. Ask AI",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    },
+    {
+      "title": "Workspace Agents",
+      "source_url": "https://developers.openai.com/workspace-agents",
+      "endpoint": {
+        "method": null,
+        "uri": null,
+        "request_type": null
+      },
+      "description": "> Trigger published ChatGPT workspace agents from backend systems and automations. Use this as a compact map of Workspace Agents docs. Each page has a Markdown twin at `/workspace-agents/<slug>.md`.",
+      "parameters": {},
+      "request_body_schema": [],
+      "response_schema": [],
+      "examples": [],
+      "events_or_schemas": []
+    }
+  ]
+}
